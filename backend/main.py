@@ -6,11 +6,12 @@ from dotenv import load_dotenv
 import inngest
 import os
 import datetime
+from pathlib import Path
 from typing import List
 import logging
 
-from models import DocumentUpload, QuestionRequest, QuestionResponse, DocumentInfo, HealthResponse
-from rag_service import RAGService
+from .models import DocumentUpload, QuestionRequest, QuestionResponse, DocumentInfo, HealthResponse
+from .rag_service import RAGService
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -44,17 +45,16 @@ except ValueError as e:
     inngest_client = None
 
 # Mount static files for frontend
-app.mount("/static", StaticFiles(directory=".", html=True), name="static")
+frontend_path = Path(__file__).parent.parent / "frontend"
+app.mount("/static", StaticFiles(directory=str(frontend_path), html=True), name="static")
 
 @app.get("/")
 async def root():
     # Serve the frontend HTML file
     try:
-        import os
-        current_dir = os.path.dirname(os.path.abspath(__file__))
-        html_path = os.path.join(current_dir, "index.html")
+        html_path = Path(__file__).parent.parent / "frontend" / "index.html"
         logger.info(f"Looking for HTML at: {html_path}")
-        logger.info(f"HTML exists: {os.path.exists(html_path)}")
+        logger.info(f"HTML exists: {html_path.exists()}")
         
         with open(html_path, "r", encoding="utf-8") as f:
             content = f.read()

@@ -6,7 +6,7 @@ import PyPDF2
 from groq import Groq
 from sentence_transformers import SentenceTransformer
 import numpy as np
-from models import DocumentUpload, QuestionResponse, ChunkInfo
+from .models import DocumentUpload, QuestionResponse, ChunkInfo
 
 class RAGService:
     def __init__(self):

@@ -45,17 +45,14 @@ cd RAG-Based-Intelligent-Document-Assistant
 
 2. **Install dependencies**
 ```bash
-# Using uv (recommended)
-uv sync
-
-# Or using pip
-pip install -r requirements.txt
+# Using pip
+pip install -r config/requirements.txt
 ```
 
 3. **Set up environment**
 ```bash
 # Copy the example environment file
-cp .env.example .env
+cp config/.env.example .env
 
 # Edit .env and add your Groq API key
 GROQ_API_KEY=your_groq_api_key_here
@@ -63,11 +60,7 @@ GROQ_API_KEY=your_groq_api_key_here
 
 4. **Run the application**
 ```bash
-# Using uv
-uv run uvicorn main:app --reload
-
-# Or using python
-python main.py
+python run.py
 ```
 
 5. **Access the application**
@@ -188,40 +181,45 @@ INNGEST_EVENT_KEY=your_inngest_key_here      # Optional (async processing)
 ```
 RAG-Based-Intelligent-Document-Assistant/
 |
-|-- main.py              # FastAPI application and routes
-|-- models.py            # Pydantic data models
-|-- rag_service.py       # Core RAG logic and AI services
-|-- index.html           # Web interface
-|-- script.js            # Frontend JavaScript
-|-- styles.css           # Custom CSS styles
-|-- test_client.py        # API testing client
-|-- pyproject.toml       # Project dependencies
-|-- .env.example         # Environment variables template
-|-- README.md           # This file
+|-- run.py              # Main entry point
+|-- backend/            # Backend application
+|   |-- main.py         # FastAPI application and routes
+|   |-- models.py       # Pydantic data models
+|   |-- rag_service.py  # Core RAG logic and AI services
+|   |-- __init__.py     # Package initialization
+|
+|-- frontend/           # Web interface
+|   |-- index.html      # Main HTML page
+|   |-- script.js       # Frontend JavaScript
+|   |-- styles.css      # Custom CSS styles
+|
+|-- config/             # Configuration files
+|   |-- requirements.txt # Python dependencies
+|   |-- .env.example    # Environment variables template
+|   |-- pyproject.toml  # Project configuration
+|
+|-- docs/               # Documentation
+|   |-- CHANGELOG.md    # Version history
+|   |-- CONTRIBUTING.md  # Contributing guidelines
+|
+|-- Dockerfile          # Docker configuration
+|-- docker-compose.yml  # Docker Compose setup
+|-- README.md          # This file
+|-- LICENSE            # MIT License
 ```
 
 ## Development
 
-### Running Tests
-```bash
-# Test API endpoints
-uv run python test_client.py
-
-# Test error handling
-uv run python test_errors.py
-```
-
 ### Adding New Features
 1. Extend `RAGService` for new search methods
-2. Add new endpoints in `main.py`
-3. Update models in `models.py`
-4. Add frontend components in `index.html` and `script.js`
+2. Add new endpoints in `backend/main.py`
+3. Update models in `backend/models.py`
+4. Add frontend components in `frontend/index.html` and `frontend/script.js`
 
 ### Code Style
 - Follow PEP 8 for Python code
 - Use semantic HTML5
 - Write descriptive commit messages
-- Add tests for new features
 
 ## Production Deployment
 
