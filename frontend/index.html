@@ -31,14 +31,14 @@
     </header>
 
     <!-- Main Content -->
-    <main class="max-w-6xl mx-auto px-4 sm:px-6 py-6">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <main class="h-screen p-0">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-0 h-full">
             
             <!-- Left Panel - Upload & Documents -->
-            <div class="md:col-span-1 space-y-4">
+            <div class="md:col-span-1 flex flex-col h-full border-r border-gray-200 bg-gray-50">
                 
                 <!-- Upload Section -->
-                <div class="bg-white rounded-lg shadow-sm border p-4">
+                <div class="bg-white border-b p-4">
                     <h2 class="text-lg font-semibold text-gray-900 mb-4">
                         <i class="fas fa-upload text-blue-600 mr-2"></i>Upload Document
                     </h2>
@@ -60,7 +60,7 @@
                 </div>
 
                 <!-- Documents Section -->
-                <div class="bg-white rounded-lg shadow-sm border p-4">
+                <div class="bg-white border-b p-4 flex-1 overflow-hidden flex flex-col">
                     <div class="flex justify-between items-center mb-4">
                         <h2 class="text-lg font-semibold text-gray-900">
                             <i class="fas fa-folder text-blue-600 mr-2"></i>Documents
@@ -69,13 +69,13 @@
                             <i class="fas fa-sync-alt text-sm"></i>
                         </button>
                     </div>
-                    <div id="documentsList" class="space-y-3">
+                    <div id="documentsList" class="space-y-3 overflow-y-auto flex-1">
                         <p class="text-gray-500 text-sm">No documents uploaded yet</p>
                     </div>
                 </div>
 
                 <!-- Stats Section -->
-                <div class="bg-white rounded-lg shadow-sm border p-4">
+                <div class="bg-white p-4">
                     <h2 class="text-lg font-semibold text-gray-900 mb-4">
                         <i class="fas fa-chart-bar text-blue-600 mr-2"></i>Statistics
                     </h2>
@@ -93,58 +93,56 @@
             </div>
 
             <!-- Right Panel - Chat Interface -->
-            <div class="md:col-span-1">
-                <div class="bg-white rounded-lg shadow-sm border h-[500px] flex flex-col">
-                    
-                    <!-- Chat Header -->
-                    <div class="border-b px-4 py-3">
-                        <h2 class="text-lg font-semibold text-gray-900">
-                            <i class="fas fa-comments text-blue-600 mr-2"></i>Ask Questions
-                        </h2>
-                    </div>
+            <div class="md:col-span-1 flex flex-col h-full bg-white">
+                
+                <!-- Chat Header -->
+                <div class="border-b px-4 py-3">
+                    <h2 class="text-lg font-semibold text-gray-900">
+                        <i class="fas fa-comments text-blue-600 mr-2"></i>Ask Questions
+                    </h2>
+                </div>
 
-                    <!-- Chat Messages -->
-                    <div id="chatMessages" class="flex-1 overflow-y-auto px-4 py-3 space-y-3">
-                        <div class="text-center text-gray-500 py-8">
-                            <i class="fas fa-robot text-4xl text-gray-300 mb-3"></i>
-                            <p>Upload a document and start asking questions!</p>
-                        </div>
+                <!-- Chat Messages -->
+                <div id="chatMessages" class="flex-1 overflow-y-auto px-4 py-3 space-y-3">
+                    <div class="text-center text-gray-500 py-8">
+                        <i class="fas fa-robot text-4xl text-gray-300 mb-3"></i>
+                        <p>Upload a document and start asking questions!</p>
                     </div>
+                </div>
 
-                    <!-- Chat Input -->
-                    <div class="border-t px-4 py-3">
-                        <div class="flex space-x-3">
-                            <input 
-                                type="text" 
-                                id="questionInput" 
-                                placeholder="Ask a question about your documents..."
-                                class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                disabled
-                            >
-                            <button 
-                                id="askBtn" 
-                                class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-300 disabled:cursor-not-allowed"
-                                disabled
-                            >
-                                <i class="fas fa-paper-plane mr-2"></i>Ask
-                            </button>
+                <!-- Chat Input -->
+                <div class="border-t px-4 py-3">
+                    <div class="flex space-x-3">
+                        <input 
+                            type="text" 
+                            id="questionInput" 
+                            placeholder="Ask a question about your documents..."
+                            class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            disabled
+                        >
+                        <button 
+                            id="askBtn" 
+                            class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-300 disabled:cursor-not-allowed"
+                            disabled
+                        >
+                            <i class="fas fa-paper-plane mr-2"></i>Ask
+                        </button>
+                    </div>
+                    <div class="mt-2 flex items-center justify-between">
+                        <div class="flex items-center space-x-4">
+                            <label class="text-sm text-gray-600">
+                                Max Context Chunks:
+                                <select id="maxChunks" class="ml-2 border border-gray-300 rounded px-2 py-1 text-sm">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3" selected>3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </label>
                         </div>
-                        <div class="mt-2 flex items-center justify-between">
-                            <div class="flex items-center space-x-4">
-                                <label class="text-sm text-gray-600">
-                                    Max Context Chunks:
-                                    <select id="maxChunks" class="ml-2 border border-gray-300 rounded px-2 py-1 text-sm">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3" selected>3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                    </select>
-                                </label>
-                            </div>
-                            <div id="typingIndicator" class="text-sm text-gray-500 hidden">
-                                <i class="fas fa-ellipsis-h"></i> AI is thinking...
-                            </div>
+                        <div id="typingIndicator" class="text-sm text-gray-500 hidden">
+                            <i class="fas fa-ellipsis-h"></i> AI is thinking...
                         </div>
                     </div>
                 </div>

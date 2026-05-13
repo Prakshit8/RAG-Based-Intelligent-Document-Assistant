@@ -10,8 +10,8 @@ from pathlib import Path
 from typing import List
 import logging
 
-from .models import DocumentUpload, QuestionRequest, QuestionResponse, DocumentInfo, HealthResponse
-from .rag_service import RAGService
+from models import DocumentUpload, QuestionRequest, QuestionResponse, DocumentInfo, HealthResponse
+from rag_service import RAGService
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
