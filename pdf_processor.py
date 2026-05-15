@@ -9,7 +9,7 @@ import logging
 from pathlib import Path
 import uuid
 
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 from utils import setup_logger, generate_document_id, clean_text, get_timestamp, merge_metadata
 
 
