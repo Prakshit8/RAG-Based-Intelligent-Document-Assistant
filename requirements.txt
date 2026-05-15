@@ -1,0 +1,26 @@
+# Core dependencies for RAG Document Assistant
+
+# Streamlit - Web framework
+streamlit==1.31.0
+
+# LangChain - LLM framework
+langchain==0.1.10
+langchain-community==0.0.27
+
+# PDF processing
+PyPDF2==3.0.1
+
+# Vector store and embeddings
+faiss-cpu==1.8.0
+sentence-transformers==2.3.1
+
+# LLM APIs
+groq==0.4.1
+openai==1.12.0
+
+# Utilities
+python-dotenv==1.0.1
+numpy==1.26.4
+
+# Optional: For GPU acceleration (uncomment if using GPU)
+# faiss-gpu==1.8.0

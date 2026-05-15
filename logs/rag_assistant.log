@@ -1,0 +1,432 @@
+2026-05-15 19:46:08 - pdf_processor - INFO - PDFProcessor initialized with chunk_size=1000, overlap=200
+2026-05-15 19:46:08 - vector_store - INFO - Loading embedding model: all-MiniLM-L6-v2
+2026-05-15 19:46:13 - vector_store - INFO - VectorStore initialized with flat index
+2026-05-15 19:46:13 - llm_service - INFO - Initialized Groq client with model: llama3-70b-8192
+2026-05-15 19:46:13 - rag_pipeline - INFO - RAG Pipeline initialized successfully
+2026-05-15 19:46:13 - rag_pipeline - INFO - Processing 1 documents
+2026-05-15 19:46:13 - pdf_processor - INFO - Processing 1 PDF files
+2026-05-15 19:46:13 - pdf_processor - INFO - Processing PDF: C:\Users\BIT\AppData\Local\Temp\tmp5wlpy0cf\03.1a WQ BRAIN Disclosure Statement and Authorization (US-IN-IL-MY-ID-TH-TW-SK-VN).pdf
+2026-05-15 19:46:13 - pdf_processor - INFO - Extracting text from: C:\Users\BIT\AppData\Local\Temp\tmp5wlpy0cf\03.1a WQ BRAIN Disclosure Statement and Authorization (US-IN-IL-MY-ID-TH-TW-SK-VN).pdf
+2026-05-15 19:46:14 - pdf_processor - INFO - Extracted 3188 characters from 1 pages
+2026-05-15 19:46:14 - pdf_processor - INFO - Splitting text into chunks (chunk_size=1000)
+2026-05-15 19:46:14 - pdf_processor - INFO - Created 4 chunks from document
+2026-05-15 19:46:14 - pdf_processor - INFO - Total chunks from all PDFs: 4
+2026-05-15 19:46:14 - vector_store - INFO - Adding 4 chunks to vector store
+2026-05-15 19:46:14 - vector_store - INFO - Generating embeddings for 4 texts
+2026-05-15 19:46:15 - vector_store - INFO - Generated embeddings with shape: (4, 384)
+2026-05-15 19:46:15 - vector_store - INFO - Created FlatL2 index (exact search)
+2026-05-15 19:46:15 - vector_store - INFO - Added 4 chunks. Total documents: 4
+2026-05-15 19:46:15 - vector_store - INFO - Saving index to data/vector_store
+2026-05-15 19:46:15 - vector_store - INFO - Index and metadata saved successfully
+2026-05-15 19:46:15 - rag_pipeline - INFO - Document processing complete: {'total_chunks': 4, 'total_documents': 1, 'avg_chunk_size': 823.0, 'min_chunk_size': 649, 'max_chunk_size': 994, 'total_characters': 3292, 'vector_store_stats': {'total_documents': 4, 'model_name': 'all-MiniLM-L6-v2', 'index_type': 'flat', 'vector_dimension': 384}}
+2026-05-15 19:46:33 - rag_pipeline - INFO - Processing query: what is this document about...
+2026-05-15 19:46:33 - vector_store - INFO - Searching for: 'what is this document about' (k=5)
+2026-05-15 19:46:34 - vector_store - INFO - Found 4 results
+2026-05-15 19:46:34 - llm_service - INFO - Generating answer for query: what is this document about...
+2026-05-15 19:46:34 - llm_service - ERROR - Error generating answer: Error code: 400 - {'error': {'message': 'The model `llama3-70b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-05-15 20:28:46 - pdf_processor - INFO - PDFProcessor initialized with chunk_size=1000, overlap=200
+2026-05-15 20:28:46 - vector_store - INFO - Loading embedding model: all-MiniLM-L6-v2
+2026-05-15 20:28:50 - vector_store - INFO - VectorStore initialized with flat index
+2026-05-15 20:28:50 - llm_service - INFO - Initialized Groq client with model: llama3-8b-8192
+2026-05-15 20:28:50 - rag_pipeline - INFO - RAG Pipeline initialized successfully
+2026-05-15 20:28:50 - rag_pipeline - INFO - Processing 1 documents
+2026-05-15 20:28:50 - pdf_processor - INFO - Processing 1 PDF files
+2026-05-15 20:28:50 - pdf_processor - INFO - Processing PDF: C:\Users\BIT\AppData\Local\Temp\tmpktmsygbl\03.1a WQ BRAIN Disclosure Statement and Authorization (US-IN-IL-MY-ID-TH-TW-SK-VN).pdf
+2026-05-15 20:28:50 - pdf_processor - INFO - Extracting text from: C:\Users\BIT\AppData\Local\Temp\tmpktmsygbl\03.1a WQ BRAIN Disclosure Statement and Authorization (US-IN-IL-MY-ID-TH-TW-SK-VN).pdf
+2026-05-15 20:28:51 - pdf_processor - INFO - Extracted 3188 characters from 1 pages
+2026-05-15 20:28:51 - pdf_processor - INFO - Splitting text into chunks (chunk_size=1000)
+2026-05-15 20:28:51 - pdf_processor - INFO - Created 4 chunks from document
+2026-05-15 20:28:51 - pdf_processor - INFO - Total chunks from all PDFs: 4
+2026-05-15 20:28:51 - vector_store - INFO - Adding 4 chunks to vector store
+2026-05-15 20:28:51 - vector_store - INFO - Generating embeddings for 4 texts
+2026-05-15 20:28:51 - vector_store - INFO - Generated embeddings with shape: (4, 384)
+2026-05-15 20:28:51 - vector_store - INFO - Created FlatL2 index (exact search)
+2026-05-15 20:28:51 - vector_store - INFO - Added 4 chunks. Total documents: 4
+2026-05-15 20:28:51 - vector_store - INFO - Saving index to data/vector_store
+2026-05-15 20:28:51 - vector_store - INFO - Index and metadata saved successfully
+2026-05-15 20:28:51 - rag_pipeline - INFO - Document processing complete: {'total_chunks': 4, 'total_documents': 1, 'avg_chunk_size': 823.0, 'min_chunk_size': 649, 'max_chunk_size': 994, 'total_characters': 3292, 'vector_store_stats': {'total_documents': 4, 'model_name': 'all-MiniLM-L6-v2', 'index_type': 'flat', 'vector_dimension': 384}}
+2026-05-15 20:29:04 - rag_pipeline - INFO - Processing query: what is this pdf about...
+2026-05-15 20:29:04 - vector_store - INFO - Searching for: 'what is this pdf about' (k=5)
+2026-05-15 20:29:04 - vector_store - INFO - Found 4 results
+2026-05-15 20:29:04 - llm_service - INFO - Generating answer for query: what is this pdf about...
+2026-05-15 20:29:04 - llm_service - WARNING - Attempt 1/3 failed: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-05-15 20:29:04 - llm_service - INFO - Retrying in 1 seconds...
+2026-05-15 20:29:05 - llm_service - WARNING - Attempt 2/3 failed: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-05-15 20:29:05 - llm_service - INFO - Retrying in 2 seconds...
+2026-05-15 20:29:08 - llm_service - WARNING - Attempt 3/3 failed: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-05-15 20:29:08 - llm_service - ERROR - Error generating answer after 3 attempts: Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-05-15 20:34:45 - pdf_processor - INFO - PDFProcessor initialized with chunk_size=1000, overlap=200
+2026-05-15 20:34:45 - vector_store - INFO - Loading embedding model: all-MiniLM-L6-v2
+2026-05-15 20:34:49 - vector_store - INFO - VectorStore initialized with flat index
+2026-05-15 20:34:49 - llm_service - INFO - Initialized Groq client with model: mixtral-8x7b-32768
+2026-05-15 20:34:49 - rag_pipeline - INFO - RAG Pipeline initialized successfully
+2026-05-15 20:34:49 - rag_pipeline - INFO - Processing 1 documents
+2026-05-15 20:34:49 - pdf_processor - INFO - Processing 1 PDF files
+2026-05-15 20:34:49 - pdf_processor - INFO - Processing PDF: C:\Users\BIT\AppData\Local\Temp\tmp5599zntr\03.1a WQ BRAIN Disclosure Statement and Authorization (US-IN-IL-MY-ID-TH-TW-SK-VN).pdf
+2026-05-15 20:34:49 - pdf_processor - INFO - Extracting text from: C:\Users\BIT\AppData\Local\Temp\tmp5599zntr\03.1a WQ BRAIN Disclosure Statement and Authorization (US-IN-IL-MY-ID-TH-TW-SK-VN).pdf
+2026-05-15 20:34:49 - pdf_processor - INFO - Extracted 3188 characters from 1 pages
+2026-05-15 20:34:49 - pdf_processor - INFO - Splitting text into chunks (chunk_size=1000)
+2026-05-15 20:34:49 - pdf_processor - INFO - Created 4 chunks from document
+2026-05-15 20:34:49 - pdf_processor - INFO - Total chunks from all PDFs: 4
+2026-05-15 20:34:49 - vector_store - INFO - Adding 4 chunks to vector store
+2026-05-15 20:34:49 - vector_store - INFO - Generating embeddings for 4 texts
+2026-05-15 20:34:50 - vector_store - INFO - Generated embeddings with shape: (4, 384)
+2026-05-15 20:34:50 - vector_store - INFO - Created FlatL2 index (exact search)
+2026-05-15 20:34:50 - vector_store - INFO - Added 4 chunks. Total documents: 4
+2026-05-15 20:34:50 - vector_store - INFO - Saving index to data/vector_store
+2026-05-15 20:34:50 - vector_store - INFO - Index and metadata saved successfully
+2026-05-15 20:34:50 - rag_pipeline - INFO - Document processing complete: {'total_chunks': 4, 'total_documents': 1, 'avg_chunk_size': 823.0, 'min_chunk_size': 649, 'max_chunk_size': 994, 'total_characters': 3292, 'vector_store_stats': {'total_documents': 4, 'model_name': 'all-MiniLM-L6-v2', 'index_type': 'flat', 'vector_dimension': 384}}
+2026-05-15 20:35:02 - rag_pipeline - INFO - Processing query: what this pdf about ...
+2026-05-15 20:35:02 - vector_store - INFO - Searching for: 'what this pdf about ' (k=5)
+2026-05-15 20:35:02 - vector_store - INFO - Found 4 results
+2026-05-15 20:35:02 - llm_service - INFO - Generating answer for query: what this pdf about ...
+2026-05-15 20:35:03 - llm_service - WARNING - Attempt 1/3 failed: Error code: 400 - {'error': {'message': 'The model `mixtral-8x7b-32768` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-05-15 20:35:03 - llm_service - INFO - Retrying in 1 seconds...
+2026-05-15 20:35:04 - llm_service - WARNING - Attempt 2/3 failed: Error code: 400 - {'error': {'message': 'The model `mixtral-8x7b-32768` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-05-15 20:35:04 - llm_service - INFO - Retrying in 2 seconds...
+2026-05-15 20:35:06 - llm_service - WARNING - Attempt 3/3 failed: Error code: 400 - {'error': {'message': 'The model `mixtral-8x7b-32768` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-05-15 20:35:06 - llm_service - ERROR - Error generating answer after 3 attempts: Error code: 400 - {'error': {'message': 'The model `mixtral-8x7b-32768` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}
+2026-05-15 20:43:21 - pdf_processor - INFO - PDFProcessor initialized with chunk_size=1000, overlap=200
+2026-05-15 20:43:21 - vector_store - INFO - Loading embedding model: all-MiniLM-L6-v2
+2026-05-15 20:43:24 - vector_store - INFO - VectorStore initialized with flat index
+2026-05-15 20:43:24 - llm_service - INFO - Initialized Groq client with model: llama-3.1-8b-instant
+2026-05-15 20:43:24 - rag_pipeline - INFO - RAG Pipeline initialized successfully
+2026-05-15 20:43:24 - rag_pipeline - INFO - Processing 1 documents
+2026-05-15 20:43:24 - pdf_processor - INFO - Processing 1 PDF files
+2026-05-15 20:43:24 - pdf_processor - INFO - Processing PDF: C:\Users\BIT\AppData\Local\Temp\tmpo7f2evbj\03.1a WQ BRAIN Disclosure Statement and Authorization (US-IN-IL-MY-ID-TH-TW-SK-VN).pdf
+2026-05-15 20:43:24 - pdf_processor - INFO - Extracting text from: C:\Users\BIT\AppData\Local\Temp\tmpo7f2evbj\03.1a WQ BRAIN Disclosure Statement and Authorization (US-IN-IL-MY-ID-TH-TW-SK-VN).pdf
+2026-05-15 20:43:24 - pdf_processor - INFO - Extracted 3188 characters from 1 pages
+2026-05-15 20:43:24 - pdf_processor - INFO - Splitting text into chunks (chunk_size=1000)
+2026-05-15 20:43:24 - pdf_processor - INFO - Created 4 chunks from document
+2026-05-15 20:43:24 - pdf_processor - INFO - Total chunks from all PDFs: 4
+2026-05-15 20:43:24 - vector_store - INFO - Adding 4 chunks to vector store
+2026-05-15 20:43:24 - vector_store - INFO - Generating embeddings for 4 texts
+2026-05-15 20:43:25 - vector_store - INFO - Generated embeddings with shape: (4, 384)
+2026-05-15 20:43:25 - vector_store - INFO - Created FlatL2 index (exact search)
+2026-05-15 20:43:25 - vector_store - INFO - Added 4 chunks. Total documents: 4
+2026-05-15 20:43:25 - vector_store - INFO - Saving index to data/vector_store
+2026-05-15 20:43:25 - vector_store - INFO - Index and metadata saved successfully
+2026-05-15 20:43:25 - rag_pipeline - INFO - Document processing complete: {'total_chunks': 4, 'total_documents': 1, 'avg_chunk_size': 823.0, 'min_chunk_size': 649, 'max_chunk_size': 994, 'total_characters': 3292, 'vector_store_stats': {'total_documents': 4, 'model_name': 'all-MiniLM-L6-v2', 'index_type': 'flat', 'vector_dimension': 384}}
+2026-05-15 20:43:45 - rag_pipeline - INFO - Processing query: what is the pdf about...
+2026-05-15 20:43:45 - vector_store - INFO - Searching for: 'what is the pdf about' (k=5)
+2026-05-15 20:43:45 - vector_store - INFO - Found 4 results
+2026-05-15 20:43:45 - llm_service - INFO - Generating answer for query: what is the pdf about...
+2026-05-15 20:43:51 - llm_service - INFO - Generated answer with 264 tokens
+2026-05-15 20:43:51 - rag_pipeline - INFO - Query processed successfully
+2026-05-15 20:59:34 - pdf_processor - INFO - PDFProcessor initialized with chunk_size=1000, overlap=200
+2026-05-15 20:59:34 - vector_store - INFO - Loading embedding model: all-MiniLM-L6-v2
+2026-05-15 20:59:35 - pdf_processor - INFO - PDFProcessor initialized with chunk_size=1000, overlap=200
+2026-05-15 20:59:35 - pdf_processor - INFO - PDFProcessor initialized with chunk_size=1000, overlap=200
+2026-05-15 20:59:35 - vector_store - INFO - Loading embedding model: all-MiniLM-L6-v2
+2026-05-15 20:59:35 - vector_store - INFO - Loading embedding model: all-MiniLM-L6-v2
+2026-05-15 20:59:42 - vector_store - INFO - VectorStore initialized with flat index
+2026-05-15 20:59:42 - vector_store - INFO - VectorStore initialized with flat index
+2026-05-15 20:59:42 - llm_service - INFO - Initialized Groq client with model: llama-3.1-8b-instant
+2026-05-15 20:59:42 - rag_pipeline - INFO - RAG Pipeline initialized successfully
+2026-05-15 20:59:42 - rag_pipeline - INFO - RAG Pipeline initialized successfully
+2026-05-15 20:59:42 - rag_pipeline - INFO - Processing 1 documents
+2026-05-15 20:59:42 - rag_pipeline - INFO - Processing 1 documents
+2026-05-15 20:59:42 - pdf_processor - INFO - Processing 1 PDF files
+2026-05-15 20:59:42 - pdf_processor - INFO - Processing 1 PDF files
+2026-05-15 20:59:42 - pdf_processor - INFO - Processing PDF: C:\Users\BIT\AppData\Local\Temp\tmp6yvn3n0m\03.1a WQ BRAIN Disclosure Statement and Authorization (US-IN-IL-MY-ID-TH-TW-SK-VN).pdf
+2026-05-15 20:59:42 - pdf_processor - INFO - Processing PDF: C:\Users\BIT\AppData\Local\Temp\tmp6yvn3n0m\03.1a WQ BRAIN Disclosure Statement and Authorization (US-IN-IL-MY-ID-TH-TW-SK-VN).pdf
+2026-05-15 20:59:42 - pdf_processor - INFO - Extracting text from: C:\Users\BIT\AppData\Local\Temp\tmp6yvn3n0m\03.1a WQ BRAIN Disclosure Statement and Authorization (US-IN-IL-MY-ID-TH-TW-SK-VN).pdf
+2026-05-15 20:59:42 - pdf_processor - INFO - Extracting text from: C:\Users\BIT\AppData\Local\Temp\tmp6yvn3n0m\03.1a WQ BRAIN Disclosure Statement and Authorization (US-IN-IL-MY-ID-TH-TW-SK-VN).pdf
+2026-05-15 20:59:43 - vector_store - INFO - VectorStore initialized with flat index
+2026-05-15 20:59:43 - vector_store - INFO - VectorStore initialized with flat index
+2026-05-15 20:59:43 - llm_service - INFO - Initialized Groq client with model: llama-3.1-8b-instant
+2026-05-15 20:59:43 - llm_service - INFO - Initialized Groq client with model: llama-3.1-8b-instant
+2026-05-15 20:59:43 - rag_pipeline - INFO - RAG Pipeline initialized successfully
+2026-05-15 20:59:43 - rag_pipeline - INFO - RAG Pipeline initialized successfully
+2026-05-15 20:59:43 - pdf_processor - INFO - Extracted 3188 characters from 1 pages
+2026-05-15 20:59:43 - pdf_processor - INFO - Extracted 3188 characters from 1 pages
+2026-05-15 20:59:43 - pdf_processor - INFO - Splitting text into chunks (chunk_size=1000)
+2026-05-15 20:59:43 - pdf_processor - INFO - Splitting text into chunks (chunk_size=1000)
+2026-05-15 20:59:43 - pdf_processor - INFO - Created 4 chunks from document
+2026-05-15 20:59:43 - pdf_processor - INFO - Created 4 chunks from document
+2026-05-15 20:59:43 - pdf_processor - INFO - Total chunks from all PDFs: 4
+2026-05-15 20:59:43 - pdf_processor - INFO - Total chunks from all PDFs: 4
+2026-05-15 20:59:43 - vector_store - INFO - Adding 4 chunks to vector store
+2026-05-15 20:59:43 - vector_store - INFO - Adding 4 chunks to vector store
+2026-05-15 20:59:43 - vector_store - INFO - Generating embeddings for 4 texts
+2026-05-15 20:59:43 - vector_store - INFO - Generating embeddings for 4 texts
+2026-05-15 20:59:44 - vector_store - INFO - Generated embeddings with shape: (4, 384)
+2026-05-15 20:59:44 - vector_store - INFO - Generated embeddings with shape: (4, 384)
+2026-05-15 20:59:44 - vector_store - INFO - Created FlatL2 index (exact search)
+2026-05-15 20:59:44 - vector_store - INFO - Created FlatL2 index (exact search)
+2026-05-15 20:59:44 - vector_store - INFO - Added 4 chunks. Total documents: 4
+2026-05-15 20:59:44 - vector_store - INFO - Added 4 chunks. Total documents: 4
+2026-05-15 20:59:44 - vector_store - INFO - Saving index to data/vector_store
+2026-05-15 20:59:44 - vector_store - INFO - Saving index to data/vector_store
+2026-05-15 20:59:44 - vector_store - INFO - Index and metadata saved successfully
+2026-05-15 20:59:44 - vector_store - INFO - Index and metadata saved successfully
+2026-05-15 20:59:44 - rag_pipeline - INFO - Document processing complete: {'total_chunks': 4, 'total_documents': 1, 'avg_chunk_size': 823.0, 'min_chunk_size': 649, 'max_chunk_size': 994, 'total_characters': 3292, 'vector_store_stats': {'total_documents': 4, 'model_name': 'all-MiniLM-L6-v2', 'index_type': 'flat', 'vector_dimension': 384}}
+2026-05-15 20:59:44 - rag_pipeline - INFO - Document processing complete: {'total_chunks': 4, 'total_documents': 1, 'avg_chunk_size': 823.0, 'min_chunk_size': 649, 'max_chunk_size': 994, 'total_characters': 3292, 'vector_store_stats': {'total_documents': 4, 'model_name': 'all-MiniLM-L6-v2', 'index_type': 'flat', 'vector_dimension': 384}}
+2026-05-15 21:07:21 - pdf_processor - INFO - PDFProcessor initialized with chunk_size=1000, overlap=200
+2026-05-15 21:07:21 - vector_store - INFO - Loading embedding model: all-MiniLM-L6-v2
+2026-05-15 21:07:23 - pdf_processor - INFO - PDFProcessor initialized with chunk_size=1000, overlap=200
+2026-05-15 21:07:23 - pdf_processor - INFO - PDFProcessor initialized with chunk_size=1000, overlap=200
+2026-05-15 21:07:23 - vector_store - INFO - Loading embedding model: all-MiniLM-L6-v2
+2026-05-15 21:07:23 - vector_store - INFO - Loading embedding model: all-MiniLM-L6-v2
+2026-05-15 21:07:25 - vector_store - INFO - VectorStore initialized with flat index
+2026-05-15 21:07:25 - vector_store - INFO - VectorStore initialized with flat index
+2026-05-15 21:07:25 - llm_service - INFO - Initialized Groq client with model: llama-3.1-8b-instant
+2026-05-15 21:07:25 - rag_pipeline - INFO - RAG Pipeline initialized successfully
+2026-05-15 21:07:25 - rag_pipeline - INFO - RAG Pipeline initialized successfully
+2026-05-15 21:07:26 - vector_store - INFO - VectorStore initialized with flat index
+2026-05-15 21:07:26 - vector_store - INFO - VectorStore initialized with flat index
+2026-05-15 21:07:26 - llm_service - INFO - Initialized Groq client with model: llama-3.1-8b-instant
+2026-05-15 21:07:26 - llm_service - INFO - Initialized Groq client with model: llama-3.1-8b-instant
+2026-05-15 21:07:26 - rag_pipeline - INFO - RAG Pipeline initialized successfully
+2026-05-15 21:07:26 - rag_pipeline - INFO - RAG Pipeline initialized successfully
+2026-05-15 21:07:26 - rag_pipeline - INFO - Processing 1 documents
+2026-05-15 21:07:26 - rag_pipeline - INFO - Processing 1 documents
+2026-05-15 21:07:26 - pdf_processor - INFO - Processing 1 PDF files
+2026-05-15 21:07:26 - pdf_processor - INFO - Processing 1 PDF files
+2026-05-15 21:07:26 - pdf_processor - INFO - Processing PDF: C:\Users\BIT\AppData\Local\Temp\tmp_eqh0rls\03.1a WQ BRAIN Disclosure Statement and Authorization (US-IN-IL-MY-ID-TH-TW-SK-VN).pdf
+2026-05-15 21:07:26 - pdf_processor - INFO - Processing PDF: C:\Users\BIT\AppData\Local\Temp\tmp_eqh0rls\03.1a WQ BRAIN Disclosure Statement and Authorization (US-IN-IL-MY-ID-TH-TW-SK-VN).pdf
+2026-05-15 21:07:26 - pdf_processor - INFO - Extracting text from: C:\Users\BIT\AppData\Local\Temp\tmp_eqh0rls\03.1a WQ BRAIN Disclosure Statement and Authorization (US-IN-IL-MY-ID-TH-TW-SK-VN).pdf
+2026-05-15 21:07:26 - pdf_processor - INFO - Extracting text from: C:\Users\BIT\AppData\Local\Temp\tmp_eqh0rls\03.1a WQ BRAIN Disclosure Statement and Authorization (US-IN-IL-MY-ID-TH-TW-SK-VN).pdf
+2026-05-15 21:07:26 - pdf_processor - INFO - Extracted 3188 characters from 1 pages
+2026-05-15 21:07:26 - pdf_processor - INFO - Extracted 3188 characters from 1 pages
+2026-05-15 21:07:26 - pdf_processor - INFO - Splitting text into chunks (chunk_size=1000)
+2026-05-15 21:07:26 - pdf_processor - INFO - Splitting text into chunks (chunk_size=1000)
+2026-05-15 21:07:26 - pdf_processor - INFO - Created 4 chunks from document
+2026-05-15 21:07:26 - pdf_processor - INFO - Created 4 chunks from document
+2026-05-15 21:07:26 - pdf_processor - INFO - Total chunks from all PDFs: 4
+2026-05-15 21:07:26 - pdf_processor - INFO - Total chunks from all PDFs: 4
+2026-05-15 21:07:26 - vector_store - INFO - Adding 4 chunks to vector store
+2026-05-15 21:07:26 - vector_store - INFO - Adding 4 chunks to vector store
+2026-05-15 21:07:26 - vector_store - INFO - Generating embeddings for 4 texts
+2026-05-15 21:07:26 - vector_store - INFO - Generating embeddings for 4 texts
+2026-05-15 21:07:27 - vector_store - INFO - Generated embeddings with shape: (4, 384)
+2026-05-15 21:07:27 - vector_store - INFO - Generated embeddings with shape: (4, 384)
+2026-05-15 21:07:27 - vector_store - INFO - Created FlatL2 index (exact search)
+2026-05-15 21:07:27 - vector_store - INFO - Created FlatL2 index (exact search)
+2026-05-15 21:07:27 - vector_store - INFO - Added 4 chunks. Total documents: 4
+2026-05-15 21:07:27 - vector_store - INFO - Added 4 chunks. Total documents: 4
+2026-05-15 21:07:27 - vector_store - INFO - Saving index to data/vector_store
+2026-05-15 21:07:27 - vector_store - INFO - Saving index to data/vector_store
+2026-05-15 21:07:27 - vector_store - INFO - Index and metadata saved successfully
+2026-05-15 21:07:27 - vector_store - INFO - Index and metadata saved successfully
+2026-05-15 21:07:27 - rag_pipeline - INFO - Document processing complete: {'total_chunks': 4, 'total_documents': 1, 'avg_chunk_size': 823.0, 'min_chunk_size': 649, 'max_chunk_size': 994, 'total_characters': 3292, 'vector_store_stats': {'total_documents': 4, 'model_name': 'all-MiniLM-L6-v2', 'index_type': 'flat', 'vector_dimension': 384}}
+2026-05-15 21:07:27 - rag_pipeline - INFO - Document processing complete: {'total_chunks': 4, 'total_documents': 1, 'avg_chunk_size': 823.0, 'min_chunk_size': 649, 'max_chunk_size': 994, 'total_characters': 3292, 'vector_store_stats': {'total_documents': 4, 'model_name': 'all-MiniLM-L6-v2', 'index_type': 'flat', 'vector_dimension': 384}}
+2026-05-15 21:07:29 - pdf_processor - INFO - PDFProcessor initialized with chunk_size=1000, overlap=200
+2026-05-15 21:07:29 - pdf_processor - INFO - PDFProcessor initialized with chunk_size=1000, overlap=200
+2026-05-15 21:07:29 - pdf_processor - INFO - PDFProcessor initialized with chunk_size=1000, overlap=200
+2026-05-15 21:07:29 - vector_store - INFO - Loading embedding model: all-MiniLM-L6-v2
+2026-05-15 21:07:29 - vector_store - INFO - Loading embedding model: all-MiniLM-L6-v2
+2026-05-15 21:07:29 - vector_store - INFO - Loading embedding model: all-MiniLM-L6-v2
+2026-05-15 21:07:31 - vector_store - INFO - VectorStore initialized with flat index
+2026-05-15 21:07:31 - vector_store - INFO - VectorStore initialized with flat index
+2026-05-15 21:07:31 - vector_store - INFO - VectorStore initialized with flat index
+2026-05-15 21:07:31 - llm_service - INFO - Initialized Groq client with model: llama-3.1-8b-instant
+2026-05-15 21:07:31 - llm_service - INFO - Initialized Groq client with model: llama-3.1-8b-instant
+2026-05-15 21:07:31 - llm_service - INFO - Initialized Groq client with model: llama-3.1-8b-instant
+2026-05-15 21:07:31 - rag_pipeline - INFO - RAG Pipeline initialized successfully
+2026-05-15 21:07:31 - rag_pipeline - INFO - RAG Pipeline initialized successfully
+2026-05-15 21:07:31 - rag_pipeline - INFO - RAG Pipeline initialized successfully
+2026-05-15 21:07:31 - rag_pipeline - INFO - Processing 1 documents
+2026-05-15 21:07:31 - rag_pipeline - INFO - Processing 1 documents
+2026-05-15 21:07:31 - rag_pipeline - INFO - Processing 1 documents
+2026-05-15 21:07:31 - pdf_processor - INFO - Processing 1 PDF files
+2026-05-15 21:07:31 - pdf_processor - INFO - Processing 1 PDF files
+2026-05-15 21:07:31 - pdf_processor - INFO - Processing 1 PDF files
+2026-05-15 21:07:31 - pdf_processor - INFO - Processing PDF: C:\Users\BIT\AppData\Local\Temp\tmpyhzb4fby\03.1a WQ BRAIN Disclosure Statement and Authorization (US-IN-IL-MY-ID-TH-TW-SK-VN).pdf
+2026-05-15 21:07:31 - pdf_processor - INFO - Processing PDF: C:\Users\BIT\AppData\Local\Temp\tmpyhzb4fby\03.1a WQ BRAIN Disclosure Statement and Authorization (US-IN-IL-MY-ID-TH-TW-SK-VN).pdf
+2026-05-15 21:07:31 - pdf_processor - INFO - Processing PDF: C:\Users\BIT\AppData\Local\Temp\tmpyhzb4fby\03.1a WQ BRAIN Disclosure Statement and Authorization (US-IN-IL-MY-ID-TH-TW-SK-VN).pdf
+2026-05-15 21:07:31 - pdf_processor - INFO - Extracting text from: C:\Users\BIT\AppData\Local\Temp\tmpyhzb4fby\03.1a WQ BRAIN Disclosure Statement and Authorization (US-IN-IL-MY-ID-TH-TW-SK-VN).pdf
+2026-05-15 21:07:31 - pdf_processor - INFO - Extracting text from: C:\Users\BIT\AppData\Local\Temp\tmpyhzb4fby\03.1a WQ BRAIN Disclosure Statement and Authorization (US-IN-IL-MY-ID-TH-TW-SK-VN).pdf
+2026-05-15 21:07:31 - pdf_processor - INFO - Extracting text from: C:\Users\BIT\AppData\Local\Temp\tmpyhzb4fby\03.1a WQ BRAIN Disclosure Statement and Authorization (US-IN-IL-MY-ID-TH-TW-SK-VN).pdf
+2026-05-15 21:07:31 - pdf_processor - INFO - Extracted 3188 characters from 1 pages
+2026-05-15 21:07:31 - pdf_processor - INFO - Extracted 3188 characters from 1 pages
+2026-05-15 21:07:31 - pdf_processor - INFO - Extracted 3188 characters from 1 pages
+2026-05-15 21:07:31 - pdf_processor - INFO - Splitting text into chunks (chunk_size=1000)
+2026-05-15 21:07:31 - pdf_processor - INFO - Splitting text into chunks (chunk_size=1000)
+2026-05-15 21:07:31 - pdf_processor - INFO - Splitting text into chunks (chunk_size=1000)
+2026-05-15 21:07:31 - pdf_processor - INFO - Created 4 chunks from document
+2026-05-15 21:07:31 - pdf_processor - INFO - Created 4 chunks from document
+2026-05-15 21:07:31 - pdf_processor - INFO - Created 4 chunks from document
+2026-05-15 21:07:31 - pdf_processor - INFO - Total chunks from all PDFs: 4
+2026-05-15 21:07:31 - pdf_processor - INFO - Total chunks from all PDFs: 4
+2026-05-15 21:07:31 - pdf_processor - INFO - Total chunks from all PDFs: 4
+2026-05-15 21:07:31 - vector_store - INFO - Adding 4 chunks to vector store
+2026-05-15 21:07:31 - vector_store - INFO - Adding 4 chunks to vector store
+2026-05-15 21:07:31 - vector_store - INFO - Adding 4 chunks to vector store
+2026-05-15 21:07:31 - vector_store - INFO - Generating embeddings for 4 texts
+2026-05-15 21:07:31 - vector_store - INFO - Generating embeddings for 4 texts
+2026-05-15 21:07:31 - vector_store - INFO - Generating embeddings for 4 texts
+2026-05-15 21:07:32 - vector_store - INFO - Generated embeddings with shape: (4, 384)
+2026-05-15 21:07:32 - vector_store - INFO - Generated embeddings with shape: (4, 384)
+2026-05-15 21:07:32 - vector_store - INFO - Generated embeddings with shape: (4, 384)
+2026-05-15 21:07:32 - vector_store - INFO - Created FlatL2 index (exact search)
+2026-05-15 21:07:32 - vector_store - INFO - Created FlatL2 index (exact search)
+2026-05-15 21:07:32 - vector_store - INFO - Created FlatL2 index (exact search)
+2026-05-15 21:07:32 - vector_store - INFO - Added 4 chunks. Total documents: 4
+2026-05-15 21:07:32 - vector_store - INFO - Added 4 chunks. Total documents: 4
+2026-05-15 21:07:32 - vector_store - INFO - Added 4 chunks. Total documents: 4
+2026-05-15 21:07:32 - vector_store - INFO - Saving index to data/vector_store
+2026-05-15 21:07:32 - vector_store - INFO - Saving index to data/vector_store
+2026-05-15 21:07:32 - vector_store - INFO - Saving index to data/vector_store
+2026-05-15 21:07:32 - vector_store - INFO - Index and metadata saved successfully
+2026-05-15 21:07:32 - vector_store - INFO - Index and metadata saved successfully
+2026-05-15 21:07:32 - vector_store - INFO - Index and metadata saved successfully
+2026-05-15 21:07:32 - rag_pipeline - INFO - Document processing complete: {'total_chunks': 4, 'total_documents': 1, 'avg_chunk_size': 823.0, 'min_chunk_size': 649, 'max_chunk_size': 994, 'total_characters': 3292, 'vector_store_stats': {'total_documents': 4, 'model_name': 'all-MiniLM-L6-v2', 'index_type': 'flat', 'vector_dimension': 384}}
+2026-05-15 21:07:32 - rag_pipeline - INFO - Document processing complete: {'total_chunks': 4, 'total_documents': 1, 'avg_chunk_size': 823.0, 'min_chunk_size': 649, 'max_chunk_size': 994, 'total_characters': 3292, 'vector_store_stats': {'total_documents': 4, 'model_name': 'all-MiniLM-L6-v2', 'index_type': 'flat', 'vector_dimension': 384}}
+2026-05-15 21:07:32 - rag_pipeline - INFO - Document processing complete: {'total_chunks': 4, 'total_documents': 1, 'avg_chunk_size': 823.0, 'min_chunk_size': 649, 'max_chunk_size': 994, 'total_characters': 3292, 'vector_store_stats': {'total_documents': 4, 'model_name': 'all-MiniLM-L6-v2', 'index_type': 'flat', 'vector_dimension': 384}}
+2026-05-15 21:11:56 - pdf_processor - INFO - PDFProcessor initialized with chunk_size=1000, overlap=200
+2026-05-15 21:11:56 - vector_store - INFO - Loading embedding model: all-MiniLM-L6-v2
+2026-05-15 21:11:57 - pdf_processor - INFO - PDFProcessor initialized with chunk_size=1000, overlap=200
+2026-05-15 21:11:57 - pdf_processor - INFO - PDFProcessor initialized with chunk_size=1000, overlap=200
+2026-05-15 21:11:57 - vector_store - INFO - Loading embedding model: all-MiniLM-L6-v2
+2026-05-15 21:11:57 - vector_store - INFO - Loading embedding model: all-MiniLM-L6-v2
+2026-05-15 21:11:57 - pdf_processor - INFO - PDFProcessor initialized with chunk_size=1000, overlap=200
+2026-05-15 21:11:57 - pdf_processor - INFO - PDFProcessor initialized with chunk_size=1000, overlap=200
+2026-05-15 21:11:57 - pdf_processor - INFO - PDFProcessor initialized with chunk_size=1000, overlap=200
+2026-05-15 21:11:57 - vector_store - INFO - Loading embedding model: all-MiniLM-L6-v2
+2026-05-15 21:11:57 - vector_store - INFO - Loading embedding model: all-MiniLM-L6-v2
+2026-05-15 21:11:57 - vector_store - INFO - Loading embedding model: all-MiniLM-L6-v2
+2026-05-15 21:12:00 - vector_store - INFO - VectorStore initialized with flat index
+2026-05-15 21:12:00 - vector_store - INFO - VectorStore initialized with flat index
+2026-05-15 21:12:00 - vector_store - INFO - VectorStore initialized with flat index
+2026-05-15 21:12:00 - llm_service - INFO - Initialized Groq client with model: llama-3.1-8b-instant
+2026-05-15 21:12:00 - rag_pipeline - INFO - RAG Pipeline initialized successfully
+2026-05-15 21:12:00 - rag_pipeline - INFO - RAG Pipeline initialized successfully
+2026-05-15 21:12:00 - rag_pipeline - INFO - RAG Pipeline initialized successfully
+2026-05-15 21:12:01 - vector_store - INFO - VectorStore initialized with flat index
+2026-05-15 21:12:01 - vector_store - INFO - VectorStore initialized with flat index
+2026-05-15 21:12:01 - vector_store - INFO - VectorStore initialized with flat index
+2026-05-15 21:12:01 - llm_service - INFO - Initialized Groq client with model: llama-3.1-8b-instant
+2026-05-15 21:12:01 - llm_service - INFO - Initialized Groq client with model: llama-3.1-8b-instant
+2026-05-15 21:12:01 - rag_pipeline - INFO - RAG Pipeline initialized successfully
+2026-05-15 21:12:01 - rag_pipeline - INFO - RAG Pipeline initialized successfully
+2026-05-15 21:12:01 - rag_pipeline - INFO - RAG Pipeline initialized successfully
+2026-05-15 21:12:01 - rag_pipeline - INFO - Processing 1 documents
+2026-05-15 21:12:01 - rag_pipeline - INFO - Processing 1 documents
+2026-05-15 21:12:01 - rag_pipeline - INFO - Processing 1 documents
+2026-05-15 21:12:01 - pdf_processor - INFO - Processing 1 PDF files
+2026-05-15 21:12:01 - pdf_processor - INFO - Processing 1 PDF files
+2026-05-15 21:12:01 - pdf_processor - INFO - Processing 1 PDF files
+2026-05-15 21:12:01 - pdf_processor - INFO - Processing PDF: C:\Users\BIT\AppData\Local\Temp\tmp77ay0cbj\03.1a WQ BRAIN Disclosure Statement and Authorization (US-IN-IL-MY-ID-TH-TW-SK-VN).pdf
+2026-05-15 21:12:01 - pdf_processor - INFO - Processing PDF: C:\Users\BIT\AppData\Local\Temp\tmp77ay0cbj\03.1a WQ BRAIN Disclosure Statement and Authorization (US-IN-IL-MY-ID-TH-TW-SK-VN).pdf
+2026-05-15 21:12:01 - pdf_processor - INFO - Processing PDF: C:\Users\BIT\AppData\Local\Temp\tmp77ay0cbj\03.1a WQ BRAIN Disclosure Statement and Authorization (US-IN-IL-MY-ID-TH-TW-SK-VN).pdf
+2026-05-15 21:12:01 - pdf_processor - INFO - Extracting text from: C:\Users\BIT\AppData\Local\Temp\tmp77ay0cbj\03.1a WQ BRAIN Disclosure Statement and Authorization (US-IN-IL-MY-ID-TH-TW-SK-VN).pdf
+2026-05-15 21:12:01 - pdf_processor - INFO - Extracting text from: C:\Users\BIT\AppData\Local\Temp\tmp77ay0cbj\03.1a WQ BRAIN Disclosure Statement and Authorization (US-IN-IL-MY-ID-TH-TW-SK-VN).pdf
+2026-05-15 21:12:01 - pdf_processor - INFO - Extracting text from: C:\Users\BIT\AppData\Local\Temp\tmp77ay0cbj\03.1a WQ BRAIN Disclosure Statement and Authorization (US-IN-IL-MY-ID-TH-TW-SK-VN).pdf
+2026-05-15 21:12:01 - pdf_processor - INFO - Extracted 3188 characters from 1 pages
+2026-05-15 21:12:01 - pdf_processor - INFO - Extracted 3188 characters from 1 pages
+2026-05-15 21:12:01 - pdf_processor - INFO - Extracted 3188 characters from 1 pages
+2026-05-15 21:12:01 - pdf_processor - INFO - Splitting text into chunks (chunk_size=1000)
+2026-05-15 21:12:01 - pdf_processor - INFO - Splitting text into chunks (chunk_size=1000)
+2026-05-15 21:12:01 - pdf_processor - INFO - Splitting text into chunks (chunk_size=1000)
+2026-05-15 21:12:01 - pdf_processor - INFO - Created 4 chunks from document
+2026-05-15 21:12:01 - pdf_processor - INFO - Created 4 chunks from document
+2026-05-15 21:12:01 - pdf_processor - INFO - Created 4 chunks from document
+2026-05-15 21:12:01 - pdf_processor - INFO - Total chunks from all PDFs: 4
+2026-05-15 21:12:01 - pdf_processor - INFO - Total chunks from all PDFs: 4
+2026-05-15 21:12:01 - pdf_processor - INFO - Total chunks from all PDFs: 4
+2026-05-15 21:12:01 - vector_store - INFO - Adding 4 chunks to vector store
+2026-05-15 21:12:01 - vector_store - INFO - Adding 4 chunks to vector store
+2026-05-15 21:12:01 - vector_store - INFO - Adding 4 chunks to vector store
+2026-05-15 21:12:01 - vector_store - INFO - Generating embeddings for 4 texts
+2026-05-15 21:12:01 - vector_store - INFO - Generating embeddings for 4 texts
+2026-05-15 21:12:01 - vector_store - INFO - Generating embeddings for 4 texts
+2026-05-15 21:12:01 - vector_store - INFO - VectorStore initialized with flat index
+2026-05-15 21:12:01 - vector_store - INFO - VectorStore initialized with flat index
+2026-05-15 21:12:01 - vector_store - INFO - VectorStore initialized with flat index
+2026-05-15 21:12:01 - llm_service - INFO - Initialized Groq client with model: llama-3.1-8b-instant
+2026-05-15 21:12:01 - llm_service - INFO - Initialized Groq client with model: llama-3.1-8b-instant
+2026-05-15 21:12:01 - llm_service - INFO - Initialized Groq client with model: llama-3.1-8b-instant
+2026-05-15 21:12:01 - rag_pipeline - INFO - RAG Pipeline initialized successfully
+2026-05-15 21:12:01 - rag_pipeline - INFO - RAG Pipeline initialized successfully
+2026-05-15 21:12:01 - rag_pipeline - INFO - RAG Pipeline initialized successfully
+2026-05-15 21:12:03 - vector_store - INFO - Generated embeddings with shape: (4, 384)
+2026-05-15 21:12:03 - vector_store - INFO - Generated embeddings with shape: (4, 384)
+2026-05-15 21:12:03 - vector_store - INFO - Generated embeddings with shape: (4, 384)
+2026-05-15 21:12:03 - vector_store - INFO - Created FlatL2 index (exact search)
+2026-05-15 21:12:03 - vector_store - INFO - Created FlatL2 index (exact search)
+2026-05-15 21:12:03 - vector_store - INFO - Created FlatL2 index (exact search)
+2026-05-15 21:12:03 - vector_store - INFO - Added 4 chunks. Total documents: 4
+2026-05-15 21:12:03 - vector_store - INFO - Added 4 chunks. Total documents: 4
+2026-05-15 21:12:03 - vector_store - INFO - Added 4 chunks. Total documents: 4
+2026-05-15 21:12:03 - vector_store - INFO - Saving index to data/vector_store
+2026-05-15 21:12:03 - vector_store - INFO - Saving index to data/vector_store
+2026-05-15 21:12:03 - vector_store - INFO - Saving index to data/vector_store
+2026-05-15 21:12:03 - vector_store - INFO - Index and metadata saved successfully
+2026-05-15 21:12:03 - vector_store - INFO - Index and metadata saved successfully
+2026-05-15 21:12:03 - vector_store - INFO - Index and metadata saved successfully
+2026-05-15 21:12:03 - rag_pipeline - INFO - Document processing complete: {'total_chunks': 4, 'total_documents': 1, 'avg_chunk_size': 823.0, 'min_chunk_size': 649, 'max_chunk_size': 994, 'total_characters': 3292, 'vector_store_stats': {'total_documents': 4, 'model_name': 'all-MiniLM-L6-v2', 'index_type': 'flat', 'vector_dimension': 384}}
+2026-05-15 21:12:03 - rag_pipeline - INFO - Document processing complete: {'total_chunks': 4, 'total_documents': 1, 'avg_chunk_size': 823.0, 'min_chunk_size': 649, 'max_chunk_size': 994, 'total_characters': 3292, 'vector_store_stats': {'total_documents': 4, 'model_name': 'all-MiniLM-L6-v2', 'index_type': 'flat', 'vector_dimension': 384}}
+2026-05-15 21:12:03 - rag_pipeline - INFO - Document processing complete: {'total_chunks': 4, 'total_documents': 1, 'avg_chunk_size': 823.0, 'min_chunk_size': 649, 'max_chunk_size': 994, 'total_characters': 3292, 'vector_store_stats': {'total_documents': 4, 'model_name': 'all-MiniLM-L6-v2', 'index_type': 'flat', 'vector_dimension': 384}}
+2026-05-15 21:12:15 - rag_pipeline - INFO - Processing query: what is this pdf about...
+2026-05-15 21:12:15 - rag_pipeline - INFO - Processing query: what is this pdf about...
+2026-05-15 21:12:15 - rag_pipeline - INFO - Processing query: what is this pdf about...
+2026-05-15 21:12:15 - vector_store - INFO - Searching for: 'what is this pdf about' (k=5)
+2026-05-15 21:12:15 - vector_store - INFO - Searching for: 'what is this pdf about' (k=5)
+2026-05-15 21:12:15 - vector_store - INFO - Searching for: 'what is this pdf about' (k=5)
+2026-05-15 21:12:16 - vector_store - INFO - Found 4 results
+2026-05-15 21:12:16 - vector_store - INFO - Found 4 results
+2026-05-15 21:12:16 - vector_store - INFO - Found 4 results
+2026-05-15 21:12:16 - llm_service - INFO - Generating answer for query: what is this pdf about...
+2026-05-15 21:12:16 - llm_service - INFO - Generating answer for query: what is this pdf about...
+2026-05-15 21:12:16 - llm_service - INFO - Generating answer for query: what is this pdf about...
+2026-05-15 21:12:16 - llm_service - INFO - Generated answer with 281 tokens
+2026-05-15 21:12:16 - llm_service - INFO - Generated answer with 281 tokens
+2026-05-15 21:12:16 - llm_service - INFO - Generated answer with 281 tokens
+2026-05-15 21:12:16 - rag_pipeline - INFO - Query processed successfully
+2026-05-15 21:12:16 - rag_pipeline - INFO - Query processed successfully
+2026-05-15 21:12:16 - rag_pipeline - INFO - Query processed successfully
+2026-05-15 21:12:43 - rag_pipeline - INFO - Processing query: what its page 1 says...
+2026-05-15 21:12:43 - rag_pipeline - INFO - Processing query: what its page 1 says...
+2026-05-15 21:12:43 - rag_pipeline - INFO - Processing query: what its page 1 says...
+2026-05-15 21:12:43 - vector_store - INFO - Searching for: 'what its page 1 says' (k=5)
+2026-05-15 21:12:43 - vector_store - INFO - Searching for: 'what its page 1 says' (k=5)
+2026-05-15 21:12:43 - vector_store - INFO - Searching for: 'what its page 1 says' (k=5)
+2026-05-15 21:12:44 - vector_store - INFO - Found 4 results
+2026-05-15 21:12:44 - vector_store - INFO - Found 4 results
+2026-05-15 21:12:44 - vector_store - INFO - Found 4 results
+2026-05-15 21:12:44 - llm_service - INFO - Generating answer for query: what its page 1 says...
+2026-05-15 21:12:44 - llm_service - INFO - Generating answer for query: what its page 1 says...
+2026-05-15 21:12:44 - llm_service - INFO - Generating answer for query: what its page 1 says...
+2026-05-15 21:12:44 - llm_service - INFO - Generated answer with 208 tokens
+2026-05-15 21:12:44 - llm_service - INFO - Generated answer with 208 tokens
+2026-05-15 21:12:44 - llm_service - INFO - Generated answer with 208 tokens
+2026-05-15 21:12:44 - rag_pipeline - INFO - Query processed successfully
+2026-05-15 21:12:44 - rag_pipeline - INFO - Query processed successfully
+2026-05-15 21:12:44 - rag_pipeline - INFO - Query processed successfully
+2026-05-15 21:13:53 - rag_pipeline - INFO - Processing query: what is the page 6 of the pdf...
+2026-05-15 21:13:53 - rag_pipeline - INFO - Processing query: what is the page 6 of the pdf...
+2026-05-15 21:13:53 - rag_pipeline - INFO - Processing query: what is the page 6 of the pdf...
+2026-05-15 21:13:53 - vector_store - INFO - Searching for: 'what is the page 6 of the pdf' (k=5)
+2026-05-15 21:13:53 - vector_store - INFO - Searching for: 'what is the page 6 of the pdf' (k=5)
+2026-05-15 21:13:53 - vector_store - INFO - Searching for: 'what is the page 6 of the pdf' (k=5)
+2026-05-15 21:13:53 - vector_store - INFO - Found 4 results
+2026-05-15 21:13:53 - vector_store - INFO - Found 4 results
+2026-05-15 21:13:53 - vector_store - INFO - Found 4 results
+2026-05-15 21:13:53 - llm_service - INFO - Generating answer for query: what is the page 6 of the pdf...
+2026-05-15 21:13:53 - llm_service - INFO - Generating answer for query: what is the page 6 of the pdf...
+2026-05-15 21:13:53 - llm_service - INFO - Generating answer for query: what is the page 6 of the pdf...
+2026-05-15 21:13:54 - llm_service - INFO - Generated answer with 62 tokens
+2026-05-15 21:13:54 - llm_service - INFO - Generated answer with 62 tokens
+2026-05-15 21:13:54 - llm_service - INFO - Generated answer with 62 tokens
+2026-05-15 21:13:54 - rag_pipeline - INFO - Query processed successfully
+2026-05-15 21:13:54 - rag_pipeline - INFO - Query processed successfully
+2026-05-15 21:13:54 - rag_pipeline - INFO - Query processed successfully
+2026-05-15 21:14:10 - rag_pipeline - INFO - Processing query: who is virat kohli...
+2026-05-15 21:14:10 - rag_pipeline - INFO - Processing query: who is virat kohli...
+2026-05-15 21:14:10 - rag_pipeline - INFO - Processing query: who is virat kohli...
+2026-05-15 21:14:10 - vector_store - INFO - Searching for: 'who is virat kohli' (k=5)
+2026-05-15 21:14:10 - vector_store - INFO - Searching for: 'who is virat kohli' (k=5)
+2026-05-15 21:14:10 - vector_store - INFO - Searching for: 'who is virat kohli' (k=5)
+2026-05-15 21:14:10 - vector_store - INFO - Found 4 results
+2026-05-15 21:14:10 - vector_store - INFO - Found 4 results
+2026-05-15 21:14:10 - vector_store - INFO - Found 4 results
+2026-05-15 21:14:10 - llm_service - INFO - Generating answer for query: who is virat kohli...
+2026-05-15 21:14:10 - llm_service - INFO - Generating answer for query: who is virat kohli...
+2026-05-15 21:14:10 - llm_service - INFO - Generating answer for query: who is virat kohli...
+2026-05-15 21:14:11 - llm_service - INFO - Generated answer with 18 tokens
+2026-05-15 21:14:11 - llm_service - INFO - Generated answer with 18 tokens
+2026-05-15 21:14:11 - llm_service - INFO - Generated answer with 18 tokens
+2026-05-15 21:14:11 - rag_pipeline - INFO - Query processed successfully
+2026-05-15 21:14:11 - rag_pipeline - INFO - Query processed successfully
+2026-05-15 21:14:11 - rag_pipeline - INFO - Query processed successfully
