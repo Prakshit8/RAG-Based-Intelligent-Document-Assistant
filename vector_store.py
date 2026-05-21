@@ -47,12 +47,12 @@ class VectorStore:
         self.persist_directory = persist_directory
         self.vector_dimension = vector_dimension
         
-        # Initialize sentence transformer model
-        # all-MiniLM-L6-v2: Fast, good quality, 384 dimensions
+        
+        
         self.logger.info(f"Loading embedding model: {model_name}")
         self.embedding_model = SentenceTransformer(model_name)
         
-        # Initialize FAISS index
+        
         self.index = None
         self.index_type = index_type
         self.documents = []  # Store document texts

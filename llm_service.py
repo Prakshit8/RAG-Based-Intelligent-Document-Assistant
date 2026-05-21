@@ -28,10 +28,10 @@ from utils import setup_logger, validate_api_key, calculate_token_count
 class LLMConfig:
     """Configuration for LLM service"""
     api_key: str
-    model: str = "llama3-8b-8192"  # Default Groq model
-    temperature: float = 0.1  # Low temperature for factual answers
+    model: str = "llama3-8b-8192"  
+    temperature: float = 0.1  
     max_tokens: int = 1024
-    provider: str = "groq"  # 'groq' or 'openai'
+    provider: str = "groq"  
     streaming: bool = True
 
 
@@ -47,17 +47,11 @@ class LLMService:
     """
     
     def __init__(self, config: LLMConfig):
-        """
-        Initialize LLM service with configuration
-        
-        Args:
-            config: LLMConfig object with API settings
-        """
         self.logger = setup_logger("llm_service")
         self.config = config
         self.client = None
         
-        # Validate API key
+        # Validate API key (never log the actual key)
         if not validate_api_key(config.api_key):
             raise ValueError("Invalid API key provided")
         
@@ -66,13 +60,13 @@ class LLMService:
             if not GROQ_AVAILABLE:
                 raise ImportError("Groq library not installed. Install with: pip install groq")
             self.client = Groq(api_key=config.api_key)
-            self.logger.info(f"Initialized Groq client with model: {config.model}")
+            self.logger.info(f"Initialized Groq client")
             
         elif config.provider == "openai":
             if not OPENAI_AVAILABLE:
                 raise ImportError("OpenAI library not installed. Install with: pip install openai")
             self.client = OpenAI(api_key=config.api_key)
-            self.logger.info(f"Initialized OpenAI client with model: {config.model}")
+            self.logger.info(f"Initialized OpenAI client")
             
         else:
             raise ValueError(f"Unknown provider: {config.provider}")
@@ -188,15 +182,26 @@ Answer:"""
                 return result
                 
             except Exception as e:
-                self.logger.warning(f"Attempt {attempt + 1}/{max_retries} failed: {e}")
-                if attempt < max_retries - 1:
-                    # Exponential backoff: 2^attempt seconds
-                    wait_time = 2 ** attempt
-                    self.logger.info(f"Retrying in {wait_time} seconds...")
-                    time.sleep(wait_time)
+                error_msg = str(e)
+                self.logger.warning(f"Attempt {attempt + 1}/{max_retries} failed: {error_msg[:100]}...")
+                
+                # Check if it's a temporary API error
+                if "resource_exhausted" in error_msg or "unavailable" in error_msg:
+                    if attempt < max_retries - 1:
+                        wait_time = min(2 ** attempt, 10)  # Cap at 10 seconds
+                        self.logger.info(f"API overloaded. Retrying in {wait_time} seconds...")
+                        time.sleep(wait_time)
+                    else:
+                        self.logger.error("API service is currently unavailable. Please try again later.")
+                        raise Exception("The AI service is temporarily overloaded. Please try again in a few minutes.")
                 else:
-                    self.logger.error(f"Error generating answer after {max_retries} attempts: {e}")
-                    raise
+                    if attempt < max_retries - 1:
+                        wait_time = 2 ** attempt
+                        self.logger.info(f"Retrying in {wait_time} seconds...")
+                        time.sleep(wait_time)
+                    else:
+                        self.logger.error(f"Error generating answer after {max_retries} attempts: {e}")
+                        raise
     
     def generate_answer_stream(
         self,
@@ -238,7 +243,11 @@ Answer:"""
                     yield chunk.choices[0].delta.content
                     
         except Exception as e:
-            self.logger.error(f"Error in streaming generation: {e}")
+            error_msg = str(e)
+            self.logger.error(f"Error in streaming generation: {error_msg[:100]}...")
+            
+            if "resource_exhausted" in error_msg or "unavailable" in error_msg:
+                raise Exception("The AI service is temporarily overloaded. Please try again in a few minutes.")
             raise
     
     def re_rank_results(

@@ -4,17 +4,12 @@ Modern chat interface for document Q&A
 """
 
 import streamlit as st
-import os
 from typing import List, Dict, Any
 import tempfile
 from pathlib import Path
-from dotenv import load_dotenv
 
 from rag_pipeline import RAGPipeline
 from utils import setup_logger, validate_api_key
-
-# Load environment variables from .env file
-load_dotenv()
 
 
 # Page configuration
@@ -284,6 +279,27 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 
+def get_config():
+    """Get configuration from Streamlit secrets with fallback to defaults"""
+    try:
+        api_key = st.secrets.get("GROQ_API_KEY", "")
+        llm_provider = st.secrets.get("LLM_PROVIDER", "groq")
+        llm_model = st.secrets.get("LLM_MODEL", "llama-3.1-8b-instant")
+        chunk_size = st.secrets.get("CHUNK_SIZE", 1000)
+        chunk_overlap = st.secrets.get("CHUNK_OVERLAP", 200)
+        
+        return {
+            "api_key": api_key,
+            "llm_provider": llm_provider,
+            "llm_model": llm_model,
+            "chunk_size": chunk_size,
+            "chunk_overlap": chunk_overlap
+        }
+    except Exception as e:
+        st.error("⚠️ Configuration error. Please check your Streamlit secrets.")
+        return None
+
+
 def initialize_session_state():
     """Initialize Streamlit session state variables"""
     if 'rag_pipeline' not in st.session_state:
@@ -292,11 +308,8 @@ def initialize_session_state():
         st.session_state.chat_history = []
     if 'processed_files' not in st.session_state:
         st.session_state.processed_files = []
-    if 'api_key' not in st.session_state:
-        # Load API key from environment variable if available
-        st.session_state.api_key = os.getenv('GROQ_API_KEY', '') or os.getenv('OPENAI_API_KEY', '')
-    if 'llm_provider' not in st.session_state:
-        st.session_state.llm_provider = os.getenv('LLM_PROVIDER', 'groq')
+    if 'config' not in st.session_state:
+        st.session_state.config = get_config()
 
 
 def display_chat_message(role: str, content: str, sources: List[Dict] = None):
@@ -352,13 +365,17 @@ def sidebar():
         
         if uploaded_files:
             if st.button("📥 Process Documents", use_container_width=True):
-                # Get API key from environment
-                api_key = os.getenv('GROQ_API_KEY', '') or os.getenv('OPENAI_API_KEY', '')
-                llm_provider = os.getenv('LLM_PROVIDER', 'groq')
-                llm_model = os.getenv('LLM_MODEL', 'llama-3.1-8b-instant')
+                # Get configuration from secrets
+                config = get_config()
                 
-                if not validate_api_key(api_key):
-                    st.error("⚠️ API key not configured. Please check your environment variables.")
+                if config is None:
+                    st.error("⚠️ Configuration error. Please check your Streamlit secrets.")
+                    return
+                
+                if not validate_api_key(config["api_key"]):
+                    st.error("⚠️ API key not configured. Please add GROQ_API_KEY to your Streamlit secrets.")
+                    st.info("📖 For local development: Create `.streamlit/secrets.toml` with your API key.")
+                    st.info("📖 For Streamlit Cloud: Add GROQ_API_KEY in your app settings.")
                     return
                 
                 with st.spinner("Processing documents..."):
@@ -368,24 +385,25 @@ def sidebar():
                         pdf_paths = []
                         
                         for uploaded_file in uploaded_files:
-                            temp_path = os.path.join(temp_dir, uploaded_file.name)
+                            temp_path = Path(temp_dir) / uploaded_file.name
                             with open(temp_path, 'wb') as f:
                                 f.write(uploaded_file.getbuffer())
-                            pdf_paths.append(temp_path)
+                            pdf_paths.append(str(temp_path))
                         
                         # Initialize RAG pipeline
                         st.session_state.rag_pipeline = RAGPipeline(
-                            api_key=api_key,
-                            llm_model=llm_model,
-                            llm_provider=llm_provider,
-                            chunk_size=1000,
-                            chunk_overlap=200
+                            api_key=config["api_key"],
+                            llm_model=config["llm_model"],
+                            llm_provider=config["llm_provider"],
+                            chunk_size=config["chunk_size"],
+                            chunk_overlap=config["chunk_overlap"]
                         )
                         
                         # Process documents
                         stats = st.session_state.rag_pipeline.process_documents(pdf_paths)
                         
                         st.session_state.processed_files = [f.name for f in uploaded_files]
+                        st.session_state.config = config
                         
                         st.success(f"✅ Processed {stats['total_chunks']} chunks from {stats['total_documents']} documents")
                         
@@ -397,6 +415,7 @@ def sidebar():
                         
                     except Exception as e:
                         st.error(f"❌ Error processing documents: {str(e)}")
+                        st.error("Please check your API key and try again.")
         
         st.markdown("---")
         
