@@ -418,53 +418,35 @@ def sidebar():
                         # ==============================
 
                         with st.spinner("🤖 Generating AI Summary & Insights..."):
-
                             # Retrieve important chunks
-                            search_results = st.session_state.rag_pipeline.search(
-                                query="Provide document summary and important insights",
+                            search_results = st.session_state.rag_pipeline.vector_store.search(
+                                "Provide document summary and important insights",
                                 k=5
                             )
 
-                            # Combine chunk text
-                            summary_context = "\n\n".join([
-                                chunk["text"] for chunk in search_results
-                            ])
+                            # Generate summary using existing LLM pipeline
+                            summary_result = (
+                                st.session_state.rag_pipeline.llm_service.generate_answer(
+                                    question="""
+Generate:
 
-                            # AI prompt
-                            summary_prompt = f"""
-                            Analyze the following document content.
-
-                            Generate:
-                            1. Executive Summary
-                            2. Key Insights
-                            3. Important Topics
-                            4. Action Items / Deadlines (if present)
-
-                            Document Content:
-                            {summary_context}
-                            """
-
-                            # Generate AI response
-                            response = st.session_state.rag_pipeline.llm_service.client.chat.completions.create(
-                                model=config["llm_model"],
-                                messages=[
-                                    {
-                                        "role": "user",
-                                        "content": summary_prompt
-                                    }
-                                ],
-                                temperature=0.2,
-                                max_tokens=700
+1. Executive Summary
+2. Key Insights
+3. Important Topics
+4. Action Items / Deadlines (if present)
+                                    """,
+                                    retrieved_chunks=search_results,
+                                    conversation_history=[]
+                                )
                             )
 
-                            auto_summary = response.choices[0].message.content
+                            auto_summary = summary_result["answer"]
 
                             # Save in session
                             st.session_state.auto_summary = auto_summary
 
                         # Display AI Summary
                         if "auto_summary" in st.session_state:
-
                             st.markdown("## 🤖 AI Generated Summary & Insights")
 
                             st.markdown(f"""
