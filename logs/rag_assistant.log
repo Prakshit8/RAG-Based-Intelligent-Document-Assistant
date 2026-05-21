@@ -430,3 +430,157 @@
 2026-05-15 21:14:11 - rag_pipeline - INFO - Query processed successfully
 2026-05-15 21:14:11 - rag_pipeline - INFO - Query processed successfully
 2026-05-15 21:14:11 - rag_pipeline - INFO - Query processed successfully
+2026-05-22 02:22:50 - pdf_processor - INFO - PDFProcessor initialized with chunk_size=1000, overlap=200
+2026-05-22 02:22:50 - vector_store - INFO - Loading embedding model: all-MiniLM-L6-v2
+2026-05-22 02:22:54 - vector_store - INFO - VectorStore initialized with flat index
+2026-05-22 02:22:54 - llm_service - INFO - Initialized Groq client
+2026-05-22 02:22:54 - rag_pipeline - INFO - RAG Pipeline initialized successfully
+2026-05-22 02:22:54 - rag_pipeline - INFO - Processing 1 documents
+2026-05-22 02:22:54 - pdf_processor - INFO - Processing 1 PDF files
+2026-05-22 02:22:54 - pdf_processor - INFO - Processing PDF: C:\Users\BIT\AppData\Local\Temp\tmp5bmdpoef\03.1a WQ BRAIN Disclosure Statement and Authorization (US-IN-IL-MY-ID-TH-TW-SK-VN).pdf
+2026-05-22 02:22:54 - pdf_processor - INFO - Extracting text from: C:\Users\BIT\AppData\Local\Temp\tmp5bmdpoef\03.1a WQ BRAIN Disclosure Statement and Authorization (US-IN-IL-MY-ID-TH-TW-SK-VN).pdf
+2026-05-22 02:22:54 - pdf_processor - INFO - Extracted 3188 characters from 1 pages
+2026-05-22 02:22:54 - pdf_processor - INFO - Splitting text into chunks (chunk_size=1000)
+2026-05-22 02:22:54 - pdf_processor - INFO - Created 4 chunks from document
+2026-05-22 02:22:54 - pdf_processor - INFO - Total chunks from all PDFs: 4
+2026-05-22 02:22:54 - vector_store - INFO - Adding 4 chunks to vector store
+2026-05-22 02:22:54 - vector_store - INFO - Generating embeddings for 4 texts
+2026-05-22 02:22:55 - vector_store - INFO - Generated embeddings with shape: (4, 384)
+2026-05-22 02:22:55 - vector_store - INFO - Created FlatL2 index (exact search)
+2026-05-22 02:22:55 - vector_store - INFO - Added 4 chunks. Total documents: 4
+2026-05-22 02:22:55 - vector_store - INFO - Saving index to data/vector_store
+2026-05-22 02:22:55 - vector_store - INFO - Index and metadata saved successfully
+2026-05-22 02:22:55 - rag_pipeline - INFO - Document processing complete: {'total_chunks': 4, 'total_documents': 1, 'avg_chunk_size': 823.0, 'min_chunk_size': 649, 'max_chunk_size': 994, 'total_characters': 3292, 'vector_store_stats': {'total_documents': 4, 'model_name': 'all-MiniLM-L6-v2', 'index_type': 'flat', 'vector_dimension': 384}}
+2026-05-22 02:23:04 - vector_store - INFO - Searching for: 'risks issues blockers gaps concerns dependencies constraints assumptions' (k=4)
+2026-05-22 02:23:04 - vector_store - INFO - Found 4 results
+2026-05-22 02:23:04 - vector_store - INFO - Searching for: 'legal compliance financial operational security privacy deadline risk' (k=4)
+2026-05-22 02:23:04 - vector_store - INFO - Found 4 results
+2026-05-22 02:23:04 - vector_store - INFO - Searching for: 'limitations missing information exceptions warnings unresolved' (k=4)
+2026-05-22 02:23:04 - vector_store - INFO - Found 4 results
+2026-05-22 02:23:04 - llm_service - INFO - Generating answer for query: 
+Analyze the provided context for risks, blockers,...
+2026-05-22 02:23:05 - llm_service - INFO - Generated answer with 871 tokens
+2026-05-22 02:23:24 - vector_store - INFO - Searching for: 'action items tasks owners deadlines due dates obligations follow up next steps' (k=4)
+2026-05-22 02:23:24 - vector_store - INFO - Found 4 results
+2026-05-22 02:23:24 - vector_store - INFO - Searching for: 'requirements responsibilities deliverables assigned owner timeline dates' (k=4)
+2026-05-22 02:23:24 - vector_store - INFO - Found 4 results
+2026-05-22 02:23:24 - vector_store - INFO - Searching for: 'must should required deadline submit complete review approve' (k=4)
+2026-05-22 02:23:24 - vector_store - INFO - Found 4 results
+2026-05-22 02:23:24 - llm_service - INFO - Generating answer for query: 
+Extract every action item, task, obligation, owne...
+2026-05-22 02:23:26 - llm_service - INFO - Generated answer with 710 tokens
+2026-05-22 02:23:42 - vector_store - INFO - Searching for: 'executive summary key findings important topics decisions risks deadlines action items' (k=4)
+2026-05-22 02:23:42 - vector_store - INFO - Found 4 results
+2026-05-22 02:23:42 - vector_store - INFO - Searching for: 'main themes conclusions recommendations owners next steps dates obligations' (k=4)
+2026-05-22 02:23:42 - vector_store - INFO - Found 4 results
+2026-05-22 02:23:42 - vector_store - INFO - Searching for: 'critical insights notable facts document purpose requirements follow up tasks' (k=4)
+2026-05-22 02:23:42 - vector_store - INFO - Found 4 results
+2026-05-22 02:23:42 - llm_service - INFO - Generating answer for query: 
+Create a polished, decision-ready document brief ...
+2026-05-22 02:23:43 - llm_service - INFO - Generated answer with 599 tokens
+2026-05-22 02:23:56 - vector_store - INFO - Searching for: 'main topics important details decisions requirements risks deadlines' (k=4)
+2026-05-22 02:23:56 - vector_store - INFO - Found 4 results
+2026-05-22 02:23:56 - vector_store - INFO - Searching for: 'summary insights document purpose key facts open questions' (k=4)
+2026-05-22 02:23:56 - vector_store - INFO - Found 4 results
+2026-05-22 02:23:56 - vector_store - INFO - Searching for: 'themes recommendations obligations constraints follow up' (k=4)
+2026-05-22 02:23:56 - vector_store - INFO - Found 4 results
+2026-05-22 02:23:56 - llm_service - INFO - Generating answer for query: 
+Generate smart questions a user should ask about ...
+2026-05-22 02:23:58 - llm_service - INFO - Generated answer with 808 tokens
+2026-05-22 02:24:24 - rag_pipeline - INFO - Clearing conversation history
+2026-05-22 02:24:52 - pdf_processor - INFO - PDFProcessor initialized with chunk_size=1000, overlap=200
+2026-05-22 02:24:52 - pdf_processor - INFO - PDFProcessor initialized with chunk_size=1000, overlap=200
+2026-05-22 02:24:52 - vector_store - INFO - Loading embedding model: all-MiniLM-L6-v2
+2026-05-22 02:24:52 - vector_store - INFO - Loading embedding model: all-MiniLM-L6-v2
+2026-05-22 02:24:55 - vector_store - INFO - VectorStore initialized with flat index
+2026-05-22 02:24:55 - vector_store - INFO - VectorStore initialized with flat index
+2026-05-22 02:24:55 - llm_service - INFO - Initialized Groq client
+2026-05-22 02:24:55 - llm_service - INFO - Initialized Groq client
+2026-05-22 02:24:55 - rag_pipeline - INFO - RAG Pipeline initialized successfully
+2026-05-22 02:24:55 - rag_pipeline - INFO - RAG Pipeline initialized successfully
+2026-05-22 02:24:55 - rag_pipeline - INFO - Processing 1 documents
+2026-05-22 02:24:55 - rag_pipeline - INFO - Processing 1 documents
+2026-05-22 02:24:55 - pdf_processor - INFO - Processing 1 PDF files
+2026-05-22 02:24:55 - pdf_processor - INFO - Processing 1 PDF files
+2026-05-22 02:24:55 - pdf_processor - INFO - Processing PDF: C:\Users\BIT\AppData\Local\Temp\tmprjebhbgy\Lecture 1 (1).pdf
+2026-05-22 02:24:55 - pdf_processor - INFO - Processing PDF: C:\Users\BIT\AppData\Local\Temp\tmprjebhbgy\Lecture 1 (1).pdf
+2026-05-22 02:24:55 - pdf_processor - INFO - Extracting text from: C:\Users\BIT\AppData\Local\Temp\tmprjebhbgy\Lecture 1 (1).pdf
+2026-05-22 02:24:55 - pdf_processor - INFO - Extracting text from: C:\Users\BIT\AppData\Local\Temp\tmprjebhbgy\Lecture 1 (1).pdf
+2026-05-22 02:24:55 - pdf_processor - INFO - Extracted 14784 characters from 22 pages
+2026-05-22 02:24:55 - pdf_processor - INFO - Extracted 14784 characters from 22 pages
+2026-05-22 02:24:55 - pdf_processor - INFO - Splitting text into chunks (chunk_size=1000)
+2026-05-22 02:24:55 - pdf_processor - INFO - Splitting text into chunks (chunk_size=1000)
+2026-05-22 02:24:55 - pdf_processor - INFO - Created 20 chunks from document
+2026-05-22 02:24:55 - pdf_processor - INFO - Created 20 chunks from document
+2026-05-22 02:24:55 - pdf_processor - INFO - Total chunks from all PDFs: 20
+2026-05-22 02:24:55 - pdf_processor - INFO - Total chunks from all PDFs: 20
+2026-05-22 02:24:55 - vector_store - INFO - Adding 20 chunks to vector store
+2026-05-22 02:24:55 - vector_store - INFO - Adding 20 chunks to vector store
+2026-05-22 02:24:55 - vector_store - INFO - Generating embeddings for 20 texts
+2026-05-22 02:24:55 - vector_store - INFO - Generating embeddings for 20 texts
+2026-05-22 02:24:58 - vector_store - INFO - Generated embeddings with shape: (20, 384)
+2026-05-22 02:24:58 - vector_store - INFO - Generated embeddings with shape: (20, 384)
+2026-05-22 02:24:58 - vector_store - INFO - Created FlatL2 index (exact search)
+2026-05-22 02:24:58 - vector_store - INFO - Created FlatL2 index (exact search)
+2026-05-22 02:24:58 - vector_store - INFO - Added 20 chunks. Total documents: 20
+2026-05-22 02:24:58 - vector_store - INFO - Added 20 chunks. Total documents: 20
+2026-05-22 02:24:58 - vector_store - INFO - Saving index to data/vector_store
+2026-05-22 02:24:58 - vector_store - INFO - Saving index to data/vector_store
+2026-05-22 02:24:58 - vector_store - INFO - Index and metadata saved successfully
+2026-05-22 02:24:58 - vector_store - INFO - Index and metadata saved successfully
+2026-05-22 02:24:58 - rag_pipeline - INFO - Document processing complete: {'total_chunks': 20, 'total_documents': 1, 'avg_chunk_size': 853.95, 'min_chunk_size': 482, 'max_chunk_size': 999, 'total_characters': 17079, 'vector_store_stats': {'total_documents': 20, 'model_name': 'all-MiniLM-L6-v2', 'index_type': 'flat', 'vector_dimension': 384}}
+2026-05-22 02:24:58 - rag_pipeline - INFO - Document processing complete: {'total_chunks': 20, 'total_documents': 1, 'avg_chunk_size': 853.95, 'min_chunk_size': 482, 'max_chunk_size': 999, 'total_characters': 17079, 'vector_store_stats': {'total_documents': 20, 'model_name': 'all-MiniLM-L6-v2', 'index_type': 'flat', 'vector_dimension': 384}}
+2026-05-22 02:25:04 - vector_store - INFO - Searching for: 'executive summary key findings important topics decisions risks deadlines action items' (k=12)
+2026-05-22 02:25:04 - vector_store - INFO - Searching for: 'executive summary key findings important topics decisions risks deadlines action items' (k=12)
+2026-05-22 02:25:04 - vector_store - INFO - Found 12 results
+2026-05-22 02:25:04 - vector_store - INFO - Found 12 results
+2026-05-22 02:25:04 - vector_store - INFO - Searching for: 'main themes conclusions recommendations owners next steps dates obligations' (k=12)
+2026-05-22 02:25:04 - vector_store - INFO - Searching for: 'main themes conclusions recommendations owners next steps dates obligations' (k=12)
+2026-05-22 02:25:04 - vector_store - INFO - Found 12 results
+2026-05-22 02:25:04 - vector_store - INFO - Found 12 results
+2026-05-22 02:25:04 - vector_store - INFO - Searching for: 'critical insights notable facts document purpose requirements follow up tasks' (k=12)
+2026-05-22 02:25:04 - vector_store - INFO - Searching for: 'critical insights notable facts document purpose requirements follow up tasks' (k=12)
+2026-05-22 02:25:04 - vector_store - INFO - Found 12 results
+2026-05-22 02:25:04 - vector_store - INFO - Found 12 results
+2026-05-22 02:25:04 - llm_service - INFO - Generating answer for query: 
+Create a polished, decision-ready document brief ...
+2026-05-22 02:25:04 - llm_service - INFO - Generating answer for query: 
+Create a polished, decision-ready document brief ...
+2026-05-22 02:25:06 - llm_service - INFO - Generated answer with 542 tokens
+2026-05-22 02:25:06 - llm_service - INFO - Generated answer with 542 tokens
+2026-05-22 02:25:23 - vector_store - INFO - Searching for: 'action items tasks owners deadlines due dates obligations follow up next steps' (k=12)
+2026-05-22 02:25:23 - vector_store - INFO - Searching for: 'action items tasks owners deadlines due dates obligations follow up next steps' (k=12)
+2026-05-22 02:25:23 - vector_store - INFO - Found 12 results
+2026-05-22 02:25:23 - vector_store - INFO - Found 12 results
+2026-05-22 02:25:23 - vector_store - INFO - Searching for: 'requirements responsibilities deliverables assigned owner timeline dates' (k=12)
+2026-05-22 02:25:23 - vector_store - INFO - Searching for: 'requirements responsibilities deliverables assigned owner timeline dates' (k=12)
+2026-05-22 02:25:23 - vector_store - INFO - Found 12 results
+2026-05-22 02:25:23 - vector_store - INFO - Found 12 results
+2026-05-22 02:25:23 - vector_store - INFO - Searching for: 'must should required deadline submit complete review approve' (k=12)
+2026-05-22 02:25:23 - vector_store - INFO - Searching for: 'must should required deadline submit complete review approve' (k=12)
+2026-05-22 02:25:23 - vector_store - INFO - Found 12 results
+2026-05-22 02:25:23 - vector_store - INFO - Found 12 results
+2026-05-22 02:25:23 - llm_service - INFO - Generating answer for query: 
+Extract every action item, task, obligation, owne...
+2026-05-22 02:25:23 - llm_service - INFO - Generating answer for query: 
+Extract every action item, task, obligation, owne...
+2026-05-22 02:25:26 - llm_service - INFO - Generated answer with 1037 tokens
+2026-05-22 02:25:26 - llm_service - INFO - Generated answer with 1037 tokens
+2026-05-22 02:26:48 - vector_store - INFO - Searching for: 'main topics important details decisions requirements risks deadlines' (k=12)
+2026-05-22 02:26:48 - vector_store - INFO - Searching for: 'main topics important details decisions requirements risks deadlines' (k=12)
+2026-05-22 02:26:48 - vector_store - INFO - Found 12 results
+2026-05-22 02:26:48 - vector_store - INFO - Found 12 results
+2026-05-22 02:26:48 - vector_store - INFO - Searching for: 'summary insights document purpose key facts open questions' (k=12)
+2026-05-22 02:26:48 - vector_store - INFO - Searching for: 'summary insights document purpose key facts open questions' (k=12)
+2026-05-22 02:26:49 - vector_store - INFO - Found 12 results
+2026-05-22 02:26:49 - vector_store - INFO - Found 12 results
+2026-05-22 02:26:49 - vector_store - INFO - Searching for: 'themes recommendations obligations constraints follow up' (k=12)
+2026-05-22 02:26:49 - vector_store - INFO - Searching for: 'themes recommendations obligations constraints follow up' (k=12)
+2026-05-22 02:26:49 - vector_store - INFO - Found 12 results
+2026-05-22 02:26:49 - vector_store - INFO - Found 12 results
+2026-05-22 02:26:49 - llm_service - INFO - Generating answer for query: 
+Generate smart questions a user should ask about ...
+2026-05-22 02:26:49 - llm_service - INFO - Generating answer for query: 
+Generate smart questions a user should ask about ...
+2026-05-22 02:26:51 - llm_service - INFO - Generated answer with 981 tokens
+2026-05-22 02:26:51 - llm_service - INFO - Generated answer with 981 tokens
