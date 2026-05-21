@@ -398,21 +398,81 @@ def sidebar():
                             chunk_size=config["chunk_size"],
                             chunk_overlap=config["chunk_overlap"]
                         )
-                        
+
                         # Process documents
                         stats = st.session_state.rag_pipeline.process_documents(pdf_paths)
-                        
+
                         st.session_state.processed_files = [f.name for f in uploaded_files]
                         st.session_state.config = config
-                        
+
                         st.success(f"✅ Processed {stats['total_chunks']} chunks from {stats['total_documents']} documents")
-                        
+
                         # Display statistics
                         st.markdown("### 📊 Document Statistics")
                         st.metric("Total Chunks", stats['total_chunks'])
                         st.metric("Total Documents", stats['total_documents'])
                         st.metric("Avg Chunk Size", f"{stats['avg_chunk_size']:.0f} chars")
-                        
+
+                        # ==============================
+                        # AI AUTOMATION: AUTO SUMMARY
+                        # ==============================
+
+                        with st.spinner("🤖 Generating AI Summary & Insights..."):
+
+                            # Retrieve important chunks
+                            search_results = st.session_state.rag_pipeline.search(
+                                query="Provide document summary and important insights",
+                                k=5
+                            )
+
+                            # Combine chunk text
+                            summary_context = "\n\n".join([
+                                chunk["text"] for chunk in search_results
+                            ])
+
+                            # AI prompt
+                            summary_prompt = f"""
+                            Analyze the following document content.
+
+                            Generate:
+                            1. Executive Summary
+                            2. Key Insights
+                            3. Important Topics
+                            4. Action Items / Deadlines (if present)
+
+                            Document Content:
+                            {summary_context}
+                            """
+
+                            # Generate AI response
+                            response = st.session_state.rag_pipeline.llm_service.client.chat.completions.create(
+                                model=config["llm_model"],
+                                messages=[
+                                    {
+                                        "role": "user",
+                                        "content": summary_prompt
+                                    }
+                                ],
+                                temperature=0.2,
+                                max_tokens=700
+                            )
+
+                            auto_summary = response.choices[0].message.content
+
+                            # Save in session
+                            st.session_state.auto_summary = auto_summary
+
+                        # Display AI Summary
+                        if "auto_summary" in st.session_state:
+
+                            st.markdown("## 🤖 AI Generated Summary & Insights")
+
+                            st.markdown(f"""
+                            <div class="assistant-message">
+                                {st.session_state.auto_summary}
+                            </div>
+                            """, unsafe_allow_html=True)
+
                     except Exception as e:
                         st.error(f"❌ Error processing documents: {str(e)}")
                         st.error("Please check your API key and try again.")
