@@ -17,7 +17,7 @@ This project goes beyond a basic RAG chatbot. It combines document retrieval, LL
   - Extract Actions
   - Find Risks
   - Suggest Questions
-- Download a Markdown chat report after conversations
+- Download Markdown and PDF chat reports after conversations
 - Include processed documents, pipeline stats, AI action outputs, chat transcript, and sources in the report
 - Keep LLM usage provider-independent through the `LLMService` abstraction
 - Prevent document upload from crashing when optional AI generation fails
@@ -77,7 +77,7 @@ Each action retrieves relevant document chunks from FAISS, sends only those chun
 
 ## Chat Report Export
 
-After a conversation or AI action, the app can generate a downloadable Markdown report.
+After a conversation or AI action, the app can generate downloadable Markdown and PDF reports.
 
 The report includes:
 
@@ -223,13 +223,13 @@ all-MiniLM-L6-v2
 ## Limitations
 
 - Currently supports PDF input only.
-- Report export is Markdown, not PDF or DOCX.
+- DOCX report export is not supported yet.
 - Uploaded files are processed during the active Streamlit session.
 - OpenAI provider support uses the same API key setting name currently used for Groq.
 
 ## Future Improvements
 
-- Export reports as PDF or DOCX
+- Export reports as DOCX
 - Add document comparison between multiple PDFs
 - Add entity extraction for people, companies, dates, and amounts
 - Add automation history

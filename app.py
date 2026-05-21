@@ -8,6 +8,8 @@ from typing import List, Dict, Any
 import tempfile
 from pathlib import Path
 from datetime import datetime
+from io import BytesIO
+from html import escape
 
 from rag_pipeline import RAGPipeline
 from utils import setup_logger, validate_api_key
@@ -675,6 +677,52 @@ def build_chat_report() -> str:
     return "\n".join(report_lines).strip() + "\n"
 
 
+def build_chat_report_pdf(report_text: str) -> bytes:
+    """Build a simple PDF version of the Markdown chat report."""
+    try:
+        from reportlab.lib.pagesizes import letter
+        from reportlab.lib.styles import getSampleStyleSheet
+        from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer
+    except ImportError as exc:
+        raise ImportError("Install reportlab with `pip install -r requirements.txt` to enable PDF export.") from exc
+
+    buffer = BytesIO()
+    document = SimpleDocTemplate(
+        buffer,
+        pagesize=letter,
+        rightMargin=48,
+        leftMargin=48,
+        topMargin=48,
+        bottomMargin=48
+    )
+    styles = getSampleStyleSheet()
+    story = []
+
+    for line in report_text.splitlines():
+        clean_line = line.strip()
+
+        if not clean_line:
+            story.append(Spacer(1, 8))
+            continue
+
+        if clean_line.startswith("# "):
+            story.append(Paragraph(escape(clean_line[2:]), styles["Title"]))
+        elif clean_line.startswith("## "):
+            story.append(Paragraph(escape(clean_line[3:]), styles["Heading2"]))
+        elif clean_line.startswith("### "):
+            story.append(Paragraph(escape(clean_line[4:]), styles["Heading3"]))
+        elif clean_line.startswith("- "):
+            story.append(Paragraph(f"&bull; {escape(clean_line[2:])}", styles["BodyText"]))
+        else:
+            story.append(Paragraph(escape(clean_line), styles["BodyText"]))
+
+        story.append(Spacer(1, 4))
+
+    document.build(story)
+    buffer.seek(0)
+    return buffer.read()
+
+
 def sidebar():
     """Render sidebar with configuration options"""
     with st.sidebar:
@@ -787,14 +835,27 @@ def sidebar():
             report_available = bool(st.session_state.chat_history or st.session_state.ai_actions)
             if report_available:
                 report_content = build_chat_report()
-                report_filename = f"rag_chat_report_{datetime.now().strftime('%Y%m%d_%H%M%S')}.md"
+                report_timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+                report_filename = f"docupilot_chat_report_{report_timestamp}.md"
                 st.download_button(
-                    "Download Chat Report",
+                    "Download Markdown Report",
                     data=report_content,
                     file_name=report_filename,
                     mime="text/markdown",
                     use_container_width=True
                 )
+
+                try:
+                    pdf_content = build_chat_report_pdf(report_content)
+                    st.download_button(
+                        "Download PDF Report",
+                        data=pdf_content,
+                        file_name=f"docupilot_chat_report_{report_timestamp}.pdf",
+                        mime="application/pdf",
+                        use_container_width=True
+                    )
+                except ImportError as pdf_error:
+                    st.caption(str(pdf_error))
             else:
                 st.caption("Ask questions or run AI Actions to create a downloadable report.")
         
