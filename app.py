@@ -1,5 +1,5 @@
 """
-Streamlit App for RAG Document Assistant
+Streamlit App for DocuPilot AI
 Modern chat interface for document Q&A
 """
 
@@ -7,6 +7,7 @@ import streamlit as st
 from typing import List, Dict, Any
 import tempfile
 from pathlib import Path
+from datetime import datetime
 
 from rag_pipeline import RAGPipeline
 from utils import setup_logger, validate_api_key
@@ -17,7 +18,7 @@ logger = setup_logger("streamlit_app")
 
 # Page configuration
 st.set_page_config(
-    page_title="RAG Document Assistant",
+    page_title="DocuPilot AI",
     page_icon="📚",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -596,10 +597,88 @@ def display_document_summary():
                 )
 
 
+def _format_report_sources(sources: List[Dict[str, Any]]) -> str:
+    """Format source metadata for the downloadable chat report."""
+    if not sources:
+        return "No sources recorded."
+
+    source_lines = []
+    for index, source in enumerate(sources, 1):
+        source_lines.append(
+            f"{index}. {source.get('source', 'Unknown')} "
+            f"(Page {source.get('page', 'N/A')})"
+        )
+
+    return "\n".join(source_lines)
+
+
+def build_chat_report() -> str:
+    """Build a Markdown report from documents, AI actions, and chat history."""
+    generated_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    report_lines = [
+        "# DocuPilot AI Chat Report",
+        "",
+        f"Generated: {generated_at}",
+        "",
+        "## Processed Documents"
+    ]
+
+    if st.session_state.processed_files:
+        report_lines.extend([f"- {file_name}" for file_name in st.session_state.processed_files])
+    else:
+        report_lines.append("No processed documents recorded.")
+
+    if st.session_state.rag_pipeline:
+        stats = st.session_state.rag_pipeline.get_pipeline_stats()
+        report_lines.extend([
+            "",
+            "## Pipeline Stats",
+            f"- Documents: {stats['processed_documents']}",
+            f"- Messages: {stats['conversation_length']}",
+            f"- Vectors: {stats['vector_store_stats']['total_documents']}"
+        ])
+
+    if st.session_state.ai_actions:
+        report_lines.extend(["", "## AI Automation Results"])
+        for action in st.session_state.ai_actions.values():
+            report_lines.extend([
+                "",
+                f"### {action['title']}",
+                "",
+                action["output"],
+                "",
+                "Sources:",
+                _format_report_sources(action.get("sources", []))
+            ])
+
+    report_lines.extend(["", "## Conversation"])
+    if st.session_state.chat_history:
+        for index, message in enumerate(st.session_state.chat_history, 1):
+            role = "User" if message["role"] == "user" else "Assistant"
+            report_lines.extend([
+                "",
+                f"### {index}. {role}",
+                "",
+                message["content"]
+            ])
+
+            sources = message.get("sources")
+            if sources:
+                report_lines.extend([
+                    "",
+                    "Sources:",
+                    _format_report_sources(sources)
+                ])
+    else:
+        report_lines.append("No chat messages recorded.")
+
+    return "\n".join(report_lines).strip() + "\n"
+
+
 def sidebar():
     """Render sidebar with configuration options"""
     with st.sidebar:
-        st.title("📚 RAG Assistant")
+        st.title("📚 DocuPilot AI")
         st.markdown("---")
         
         # Document Upload
@@ -702,6 +781,22 @@ def sidebar():
 
             if st.session_state.ai_action_status:
                 st.caption(st.session_state.ai_action_status)
+
+            st.markdown("---")
+            st.subheader("Chat Report")
+            report_available = bool(st.session_state.chat_history or st.session_state.ai_actions)
+            if report_available:
+                report_content = build_chat_report()
+                report_filename = f"rag_chat_report_{datetime.now().strftime('%Y%m%d_%H%M%S')}.md"
+                st.download_button(
+                    "Download Chat Report",
+                    data=report_content,
+                    file_name=report_filename,
+                    mime="text/markdown",
+                    use_container_width=True
+                )
+            else:
+                st.caption("Ask questions or run AI Actions to create a downloadable report.")
         
         st.markdown("---")
         
@@ -744,7 +839,7 @@ def main():
     sidebar()
     
     # Main content area
-    st.title("💬 Chat with Your Documents")
+    st.title("💬 DocuPilot AI")
     st.markdown("Upload PDF documents and ask questions about their content.")
     
     # Check if pipeline is initialized
