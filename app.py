@@ -32,7 +32,42 @@ st.markdown("""
     /* Hide Streamlit default elements */
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
-    header {visibility: hidden;}
+    header {
+        visibility: visible;
+        background: transparent !important;
+    }
+
+    header [data-testid="stToolbar"],
+    header [data-testid="stDecoration"],
+    header [data-testid="stStatusWidget"] {
+        visibility: hidden;
+        height: 0;
+    }
+
+    [data-testid="collapsedControl"],
+    [data-testid="stSidebarCollapsedControl"] {
+        visibility: visible !important;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        position: fixed !important;
+        top: 0.75rem !important;
+        left: 0.75rem !important;
+        z-index: 999999 !important;
+        width: 2.5rem !important;
+        height: 2.5rem !important;
+        border-radius: 0.5rem !important;
+        background-color: #1E293B !important;
+        border: 1px solid #334155 !important;
+        box-shadow: 0 10px 24px rgba(2, 8, 23, 0.45) !important;
+    }
+
+    [data-testid="collapsedControl"] svg,
+    [data-testid="stSidebarCollapsedControl"] svg {
+        color: #F8FAFC !important;
+        fill: #F8FAFC !important;
+        stroke: #F8FAFC !important;
+    }
     
     /* Global styles */
     .stApp {
