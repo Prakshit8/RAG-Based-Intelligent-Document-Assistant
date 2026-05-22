@@ -5,6 +5,7 @@ Modern chat interface for document Q&A
 
 import streamlit as st
 import streamlit.components.v1 as components
+import streamlit.components.v1 as components
 from typing import List, Dict, Any
 import tempfile
 from pathlib import Path
@@ -62,6 +63,7 @@ st.markdown("""
         z-index: 999999 !important;
         background-color: #1E293B !important;
         border: 1px solid #334155 !important;
+        border-radius: 0.5rem !important;
         border-radius: 0.5rem !important;
         box-shadow: 0 10px 24px rgba(2, 8, 23, 0.45) !important;
     }
@@ -365,6 +367,122 @@ def initialize_session_state():
         st.session_state.ai_actions = {}
     if 'ai_action_status' not in st.session_state:
         st.session_state.ai_action_status = None
+
+
+def inject_sidebar_access_button():
+    """Add a deployment-safe control that reopens the Streamlit sidebar."""
+    components.html(
+        """
+        <script>
+        (function () {
+          const doc = window.parent.document;
+          const existing = doc.getElementById("docupilot-sidebar-access");
+          if (existing) return;
+
+          const button = doc.createElement("button");
+          button.id = "docupilot-sidebar-access";
+          button.type = "button";
+          button.setAttribute("aria-label", "Open sidebar");
+          button.textContent = "Menu";
+          button.style.cssText = [
+            "position:fixed",
+            "top:14px",
+            "left:14px",
+            "z-index:2147483647",
+            "height:40px",
+            "padding:0 14px",
+            "border-radius:8px",
+            "border:1px solid #475569",
+            "background:#1e293b",
+            "color:#f8fafc",
+            "font:600 14px system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif",
+            "box-shadow:0 10px 24px rgba(2,8,23,.45)",
+            "cursor:pointer"
+          ].join(";");
+
+          button.addEventListener("click", function () {
+            const selectors = [
+              '[data-testid="collapsedControl"] button',
+              '[data-testid="stSidebarCollapsedControl"] button',
+              '[data-testid="collapsedControl"]',
+              '[data-testid="stSidebarCollapsedControl"]',
+              'button[aria-label*="sidebar" i]',
+              'button[title*="sidebar" i]'
+            ];
+
+            for (const selector of selectors) {
+              const target = doc.querySelector(selector);
+              if (target && target !== button) {
+                target.click();
+                return;
+              }
+            }
+          });
+
+          doc.body.appendChild(button);
+        })();
+        </script>
+        """,
+        height=0,
+        width=0,
+    )
+
+
+def process_uploaded_documents(uploaded_files):
+    """Validate config, index uploaded PDFs, and update app state."""
+    config = get_config()
+
+    if config is None:
+        st.error("⚠️ Configuration error. Please check your Streamlit secrets.")
+        return False
+
+    if not validate_api_key(config["api_key"]):
+        st.error("⚠️ API key not configured. Please add GROQ_API_KEY to your Streamlit secrets.")
+        st.info("📖 For local development: Create `.streamlit/secrets.toml` with your API key.")
+        st.info("📖 For Streamlit Cloud: Add GROQ_API_KEY in your app settings.")
+        return False
+
+    with st.spinner("Processing documents..."):
+        try:
+            temp_dir = tempfile.mkdtemp()
+            pdf_paths = []
+
+            for uploaded_file in uploaded_files:
+                temp_path = Path(temp_dir) / uploaded_file.name
+                with open(temp_path, 'wb') as f:
+                    f.write(uploaded_file.getbuffer())
+                pdf_paths.append(str(temp_path))
+
+            st.session_state.rag_pipeline = RAGPipeline(
+                api_key=config["api_key"],
+                llm_model=config["llm_model"],
+                llm_provider=config["llm_provider"],
+                chunk_size=config["chunk_size"],
+                chunk_overlap=config["chunk_overlap"]
+            )
+
+            stats = st.session_state.rag_pipeline.process_documents(pdf_paths)
+
+            st.session_state.processed_files = [f.name for f in uploaded_files]
+            st.session_state.config = config
+            st.session_state.auto_summary = None
+            st.session_state.summary_sources = []
+            st.session_state.summary_status = None
+            st.session_state.ai_actions = {}
+            st.session_state.ai_action_status = None
+
+            st.success(f"✅ Processed {stats['total_chunks']} chunks from {stats['total_documents']} documents")
+            st.markdown("### 📊 Document Statistics")
+            st.metric("Total Chunks", stats['total_chunks'])
+            st.metric("Total Documents", stats['total_documents'])
+            st.metric("Avg Chunk Size", f"{stats['avg_chunk_size']:.0f} chars")
+            st.info("Documents are ready. Use AI Actions below to generate structured automation outputs.")
+            return True
+
+        except Exception as e:
+            st.error(f"❌ Error processing documents: {str(e)}")
+            st.error("Please check your API key and try again.")
+            return False
 
 
 def inject_sidebar_access_button():
@@ -1061,6 +1179,7 @@ def sidebar():
 def main():
     """Main application logic"""
     initialize_session_state()
+    inject_sidebar_access_button()
     inject_sidebar_access_button()
     sidebar()
     
