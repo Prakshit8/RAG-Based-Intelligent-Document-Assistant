@@ -233,6 +233,18 @@ class RAGPipeline:
         self.logger.info(f"Query processed successfully")
         return response
     
+
+
+    def search(
+        self,
+        question: str,
+        k: int = 5
+    ):
+        """
+        Wrapper method for compatibility
+        """
+        return self.query(question=question, k=k)
+    
     def clear_conversation(self) -> None:
         """Clear conversation history"""
         self.logger.info("Clearing conversation history")

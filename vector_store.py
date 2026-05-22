@@ -198,7 +198,12 @@ class VectorStore:
         
         # Search in FAISS index
         # FAISS returns distances (L2 distance) and indices
-        distances, indices = self.index.search(query_embedding.astype('float32'), k)
+        k = min(k, self.index.ntotal)
+
+        distances, indices = self.index.search(
+            query_embedding.astype('float32'),
+            k
+        )
         
         # Convert L2 distance to similarity score (0-1)
         # Lower L2 distance = higher similarity

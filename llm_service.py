@@ -15,11 +15,6 @@ try:
 except ImportError:
     GROQ_AVAILABLE = False
 
-try:
-    from openai import OpenAI
-    OPENAI_AVAILABLE = True
-except ImportError:
-    OPENAI_AVAILABLE = False
 
 from utils import setup_logger, validate_api_key, calculate_token_count
 
@@ -28,7 +23,7 @@ from utils import setup_logger, validate_api_key, calculate_token_count
 class LLMConfig:
     """Configuration for LLM service"""
     api_key: str
-    model: str = "llama3-8b-8192"  
+    model: str = "llama-3.1-8b-instant" 
     temperature: float = 0.1  
     max_tokens: int = 1024
     provider: str = "groq"  
@@ -62,11 +57,6 @@ class LLMService:
             self.client = Groq(api_key=config.api_key)
             self.logger.info(f"Initialized Groq client")
             
-        elif config.provider == "openai":
-            if not OPENAI_AVAILABLE:
-                raise ImportError("OpenAI library not installed. Install with: pip install openai")
-            self.client = OpenAI(api_key=config.api_key)
-            self.logger.info(f"Initialized OpenAI client")
             
         else:
             raise ValueError(f"Unknown provider: {config.provider}")
